@@ -12,7 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import SettingsIcon from '@mui/icons-material/Settings';
-import YourSvg from "../../assets/HEADER_LOGO.svg"
+import HeaderLogo from "../../assets/HEADER_LOGO.svg"
 import "./Header.css"
 
 
@@ -96,7 +96,7 @@ function Header() {
             </Menu>
           </Box>
           <div className="iconContainer">
-          <img className="icon" src={YourSvg} />
+          <img className="icon" src={HeaderLogo} />
         </div>
           <Typography
             variant="h5"
