@@ -12,7 +12,7 @@ export default function Footer() {
       sx={{
         width: "100%",
         position: "fixed",
-        bottom: "0"
+        bottom: "0",
       }}
     >
       <AppBar
@@ -22,14 +22,19 @@ export default function Footer() {
       >
         <Toolbar variant="dense">
           <Typography
-            color="inherit"
             component="div"
-            sx={{ width: "100%", textAlign: "center", color:"black", fontSize:"40%"}}
+            sx={{
+              width: "120%",
+              textAlign: "center",
+              color: "black",
+              fontSize: "40%",
+            }}
           >
-            Follow us
-            <FacebookOutlinedIcon/>
-            <MailIcon/>
-            <InstagramIcon/>
+            <div>Follow us</div>
+            <FacebookOutlinedIcon />
+            <MailIcon />
+            <InstagramIcon />
+            <p>2023 © Appetit Comite-SCE01 - Final Projext | EU Privacy Policy</p>
           </Typography>
         </Toolbar>
       </AppBar>

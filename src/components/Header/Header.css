@@ -2,15 +2,13 @@
     height: 10vh;
     align-content: center;
     align-items: center;
-    width: 100vw;
     display: flex;
 
 }
 
 .iconContainer {
     height: 8vh;
-    width: 100vw;
     align-items: content;
     text-align: center;
-    display:flex
+    display: flex
 }
