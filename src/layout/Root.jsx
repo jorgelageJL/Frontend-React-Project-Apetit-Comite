@@ -5,7 +5,7 @@ import Footer from "../components/Footer/Footer";
 export default function Root() {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <Outlet />
       <Footer />
     </div>

@@ -19,7 +19,7 @@ import "./Header.css"
 const pages = ['HOME', 'ALL RECIPES', 'MEAL PLANNER', 'BY DIET'];
 const settings = ['PROFILE', 'LOGOUT'];
 
-function ResponsiveAppBar() {
+function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -161,4 +161,4 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+export default Header;

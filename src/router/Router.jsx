@@ -1,8 +1,9 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import Root from "../layout/Root";
 import Home from "../pages/Home/Home";
-// import About from "../pages/About/About";
+import Login from "../pages/Login/Login";
+import LoginHeader from "../components/LoginHeader/LoginHeader";
 
 const router = createBrowserRouter([
   {
@@ -11,12 +12,20 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <Navigate to="/login" replace={true} />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/home",
         element: <Home />,
       },
-    //   {
-    //     path: "/about",
-    //     element: <About />,
-    //   },
+      {
+        path: "/init",
+        element: <LoginHeader/>
+      }
     ],
   },
 ]);
