@@ -1,5 +1,5 @@
 .icon {
-    height: 70px;
+    height: 110px;
     min-height: 70px;
     align-content: center;
     align-items: center;
@@ -8,7 +8,7 @@
 }
 
 .iconContainer {
-    height: 50px;
+    height: 80px;
     align-items: content;
     text-align: center;
     display: flex;
