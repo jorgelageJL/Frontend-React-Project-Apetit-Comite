@@ -2,6 +2,7 @@ import"./Home.css";
 import Header from "../../components/Header/Header";import { styled } from '@mui/material/styles';
 import {Box, Grid} from '@mui/material';
 
+
 const Home = () => {
   return (
     <div>
