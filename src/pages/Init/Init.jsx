@@ -1,7 +1,8 @@
 import LoginHeader from "../../components/LoginHeader/LoginHeader";
 import logo from "../../assets/Full_Logo.png"
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import "./init.css";
+import { Link } from "react-router-dom";
 
 const Init = () => {
 
@@ -9,17 +10,12 @@ const Init = () => {
     <>
       <LoginHeader />
       <div className="fondo">
-        <div className="=container">asdqweasd</div>
-        <img className="logo" src={logo} />
-        <div className="signin">
-          <Button sx={{ my: 2, color: "black", display: "inline" }}>
-            <b>Sign up</b>
-          </Button>
-          |
-          <Button sx={{ my: 2, color: "black", display: "inline" }}>
-            <b>Log in</b>
-          </Button>
+        <div className="=container">
+          <span className="text">We belive in good food planner!</span>
+          <span> SIGN UP   </span>
+          <span>LOG IN</span>
         </div>
+      <img className="logo" src={logo} />
       </div>
     </>
   );
