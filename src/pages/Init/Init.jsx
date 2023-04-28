@@ -9,13 +9,19 @@ const Init = () => {
   return (
     <>
       <LoginHeader />
-      <div className="fondo">
-        <div className="=container">
-          <span className="text">We belive in good food planner!</span>
-          <span> SIGN UP   </span>
-          <span>LOG IN</span>
+      <div className="fondo" style={{height:"150vh"}}>
+        <div className="singUpContainer">
+          <Link to="/login" style={{ textDecoration: 'none', color:"black", border:"solid",}}>
+          <p className="=signup"> <b>SIGN UP &nbsp;  </b> </p>
+          </Link> 
+
+          <b className="line"> <p> | </p></b>
+          <Link to="/login" style={{ textDecoration: 'none', color:"black", border:"solid" }}>
+          <p className="login" >  <b> &nbsp; LOG IN</b> </p>
+          </Link>
         </div>
       <img className="logo" src={logo} />
+      <div className="text">We belive in good<div>food planner!</div></div>
       </div>
     </>
   );

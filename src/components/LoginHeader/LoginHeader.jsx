@@ -37,8 +37,8 @@ function LoginHeader() {
      setAnchorElUser(event.currentTarget);
    };
   return (
-    <AppBar position="static" sx={{ background: "#ffeb3b", color: "black" }}>
-      <Container maxWidth="x2">
+    <AppBar position="static" sx={{ background: "#ffeb3b", color: "black", width:"130vw" }}>
+      <Container width="100vw">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
@@ -123,19 +123,6 @@ function LoginHeader() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "black", display: "inline" }}
-            >
-              <b>Sign up</b>
-            </Button>
-            |
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "black", display: "inline" }}
-            >
-              <b>Log in</b>
-            </Button>
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"

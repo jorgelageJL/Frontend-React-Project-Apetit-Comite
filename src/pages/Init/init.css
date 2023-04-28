@@ -1,19 +1,52 @@
 .text {
-    font-size: 500%;
+    font-size: 290%;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 576px) {
     .fondo {
         background-image: url("../../assets/HD-wallpaper480px.jpg");
         background-size: cover;
         background-repeat: no-repeat;
+        background-position: center center;
         background-attachment: fixed;
-        height: 100vh;
+        width: 130vw;
+
+    }
+
+    .singUpContainer {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        position: relative;
+        top: 15vh;
+        text-decoration:none;
+        
+    }
+
+
+    .text {
+        margin-bottom: 15%;
+        text-align: center;
+        margin-right: 2vw;
+    }
+
+    .logo {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 5%;
+        left: 10%;
+    }
+    
+    .line {
+        top:15vh;
+        font-size: 100%;
     }
 
 }
 
-@media screen and (max-width: 1439px) {
+@media screen and (min-width: 577px) and (max-width: 992px) {
 
     .fondo {
         background-image: url("../../assets/HD-wallpaper1200px.jpg");
@@ -25,7 +58,7 @@
     }
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 993px) {
 
     .fondo {
         background-image: url("../../assets/HD-wallpaper1200px.jpg");
