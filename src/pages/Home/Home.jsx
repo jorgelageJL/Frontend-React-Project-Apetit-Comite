@@ -1,61 +1,69 @@
 import"./Home.css";
-import Header from "../../components/Header/Header";import { styled } from '@mui/material/styles';
-import {Box, Grid} from '@mui/material';
-import FoodBasket from "../../assets/Food_Basket.svg"
-
+import SampleImage from "../../assets/Sample_Image.png"
+import {Grid} from '@mui/material';
 
 const Home = () => {
   return (
-    <div>
-      <Header/>
+    <div className="home">
+      <Grid container spacing={10} 
+      sx={{ 
+        display: 'flex', 
+        width: '100%', 
+        margin: '0 auto', 
+        maxWidth: '1800px',
+        paddingRight: '75px',
+        paddingBottom: '100px'
+        }}
+        >
 
-      {/* ---> This is main grid <--- */}
-      <Grid container spacing={2} sx={{ display: 'flex', width: '100%', margin: '0 auto', maxWidth: '1800px' }}>
-       <Grid className="MainGrid" item xs={6} md={8}>
-          <Box p={10} sx={{ display: 'flex', height: '100%', paddingLeft: 10 }}>
-
-            <Box bgcolor="brown" p={10} style={{ marginBottom: '20px' }}>
-            <img src={FoodBasket} alt="Food Basket" />
-            <h2>This is Main Box</h2> 
-            <p>Content</p>
-            </Box>
-
-          </Box>
+        <Grid item md={8} xs={12}>
+          <div className="recommend">
+            <h1>This is Main Grid: Recommendation section</h1>
+            <img src={SampleImage} alt='Sample' style={{ width: '100%', height: 'auto' }} />
+            <p>This is content</p>
+          </div>
         </Grid>
 
-        {/* ---> This is side grid <--- */}
-        <Grid className="SideGrid" item xs={6} md={4} sx={{ height: '100%'}}> 
-          <Box bgcolor="white" p={10} sx={{ display: 'flex', height: '100%', paddingLeft: 10 }}>
-            <h1>Trending</h1>
-            <Box bgcolor="brown" p={10} style={{ marginBottom: '20px' }}>
-            <img src={FoodBasket} alt="Food Basket" style={{ width: '200px', height: '200px', float: 'left', marginRight: '10px' }} />
-            <div style={{ display: 'inline-block' }}>
-              <h2>This is box 1</h2> 
-              <p>Content</p>
-            </div>
-            </Box>
+        <Grid item md={4} xs={12}>
+          <div className="trend">
+            <h1>This is Side Grid: Trending Topic</h1>
 
-            <Box bgcolor="white" p={10} style={{ marginBottom: '20px' }}>
-            <img src={FoodBasket} alt="Food Basket" style={{ width: '200px', height: '200px', float: 'left', marginRight: '10px' }} />
-            <div style={{ display: 'inline-block' }}>
-            <h3>This is box 2</h3> 
-            <p>Content</p>
-            </div>
-            </Box>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <div style={{ backgroundColor: 'pink', padding: '10px', marginBottom: '20px' }}>
+                  <img src={SampleImage} alt='Sample' style={{ width: '100%', height: 'auto' }} />
+                  <h2>This is Title: BOX 1</h2>
+                  <p>This is content</p>
+                </div>
+              </Grid>
 
-            <Box bgcolor="pink" p={10} style={{ marginBottom: '20px' }}>
-            <img src={FoodBasket} alt="Food Basket" style={{ width: '200px', height: '200px', float: 'left', marginRight: '10px' }} />
-            <div style={{ display: 'inline-block' }}>
-            <h3>This is box 3</h3> 
-            <p>Content</p>
-            </div>
-            </Box>
+              <Grid item xs={12}>
+                <div style={{ backgroundColor: 'pink', padding: '10px', marginBottom: '20px' }}>
+                  <img src={SampleImage} alt='Sample' style={{ width: '100%', height: 'auto' }} />
+                  <h2>This is Title: BOX 2</h2>
+                  <p>This is content</p>
+                </div>
+              </Grid>
 
-          </Box>
+              <Grid item xs={12}>
+                <div style={{ backgroundColor: 'pink', padding: '10px', marginBottom: '20px' }}>
+                  <img src={SampleImage} alt='Sample' style={{ width: '100%', height: 'auto' }} />
+                  <h2>This is Title: BOX 3</h2>
+                  <p>This is content</p>
+                </div>
+              </Grid>
+
+            </Grid>
+          </div>
+
         </Grid>
-        </Grid>
+      </Grid>
     </div>
   );
 };
 
 export default Home;
+
+
+
+
