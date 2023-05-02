@@ -10,7 +10,7 @@ import Recipes from "../pages/Recipes/Recipes";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <Root />, 
     children: [
       {
         path: "/",

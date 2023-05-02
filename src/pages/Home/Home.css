@@ -1,3 +1,26 @@
-body {
-    margin-bottom: 10px;
+
+.recommend h1,
+.trend h1,
+.recommend h2,
+.trend h2,
+.recommend p,
+.trend p {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  font-size: 2rem;
 }
+
+@media (max-width: 600px) {
+  .recommend h1,
+  .trend h1,
+  .recommend h2,
+  .trend h2,
+  .recommend p,
+  .trend p {
+    font-size: 1.5rem;
+  }
+}
+
+
