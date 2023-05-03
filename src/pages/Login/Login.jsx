@@ -1,25 +1,29 @@
 import { useState } from "react";
 import { Email, Lock, Visibility, VisibilityOff } from "@mui/icons-material";
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Divider,
-  Grid,
-  IconButton,
-  TextField,
-} from "@mui/material";
+import { Button, Card, CardActions, CardContent, CardHeader, Divider, Grid, IconButton, TextField, } from "@mui/material";
 import { blue } from "@mui/material/colors";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { login } from '../../services/auth'
+import { useNavigate } from "react-router-dom";
 // import './Login.css'
 
 export default function Login() {
   const [isPassVisible, setIsPassVisible] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate()
 
   function handleClick() {
     setIsPassVisible(!isPassVisible);
+  }
+
+  async function onLogin() {
+    try {
+      const loginResponse = await login({email, password})
+      alert('LOGIN DONE', loginResponse)
+    } catch (error) {
+      alert('ERROR', error)
+    }
   }
 
   function render() {
@@ -37,6 +41,7 @@ export default function Login() {
             InputProps={{
               startAdornment: <Email />,
             }}
+            onChange={(e) => setEmail(e.target.value)}
           ></TextField>
 
           <TextField
@@ -53,14 +58,16 @@ export default function Login() {
                 </IconButton>
               ),
             }}
+            onChange={(e) => setPassword(e.target.value)}
           ></TextField>
         </CardContent>
 
         <Divider />
 
         <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Link to={"/home"}>
+          {/* <Link to={"/signUp"}> */}
             <Button
+              onClick={() => goToRegister()}
               size="small"
               color="secondary"
               variant="contained"
@@ -68,28 +75,24 @@ export default function Login() {
             >
               Register
             </Button>
+          {/* </Link> */}
 
-            <Button size="small" color="primary" variant="contained">
+          {/* <Link to={"/home"}> */}
+            <Button
+            onClick={() => onLogin()}
+            size="small" color="primary" variant="contained">
               Login
             </Button>
-          </Link>
+          {/* </Link> */}
         </CardActions>
       </Card>
     );
   }
 
   return (
-    <Grid
-      container /*item xs={12} md={8} xl={10}*/
-      sx={{
-        height: "85vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignContent: "center",
-      }}
-    >
-      {render()}
-    </Grid>
+      <Grid container /*item xs={12} md={8} xl={10}*/
+        sx={{ height: '85vh', display: "flex", flexDirection: 'column', justifyContent: "center", alignContent: 'center' }}>
+        {render()}
+      </Grid>
   );
 }
