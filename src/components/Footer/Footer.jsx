@@ -13,7 +13,7 @@ export default function Footer() {
     <Box
       sx={{
         width: "100%",
-        position: "fixed",
+        position: "static",
         bottom: "0",
       }}
     >
