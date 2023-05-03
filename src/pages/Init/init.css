@@ -36,15 +36,8 @@
         position: relative;
     }
 
-    .description {
-        font-size: 20%;
-        padding-bottom: 50px;
-    }
+   
 
-    .text-and-button {
-        display: flex;
-        align-items: center;
-    }
 
     .text {
         display: flex;
@@ -54,10 +47,20 @@
         display: inline-block;
     }
 
-    .button{
-        visibility: visible;
-       margin-left: 100px;
-        display: flex;
+    .description {
+        visibility: hidden;
     }
 
+
+  }
+
+  @media only screen and (min-width: 280) and (max-height: 653) {
+
+    .text {
+        font-size: 100%;
+    }
+
+    .logo {
+        height: 50px;
+    }
   }
