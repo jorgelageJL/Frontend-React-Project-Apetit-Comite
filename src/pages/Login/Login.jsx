@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Email, Lock, Visibility, VisibilityOff } from "@mui/icons-material";
 import { Button, Card, CardActions, CardContent, CardHeader, Divider, Grid, IconButton, TextField, } from "@mui/material";
 import { blue } from "@mui/material/colors";
-// import { Link } from "react-router-dom";
 import { login } from '../../services/auth'
 import { useNavigate } from "react-router-dom";
 // import './Login.css'
@@ -19,10 +18,15 @@ export default function Login() {
 
   async function onLogin() {
     try {
-      const loginResponse = await login({email, password})
-      alert('LOGIN DONE', loginResponse)
+      if (email && password) {
+        const loginResponse = await login({email, password})
+        localStorage.setItem('token', loginResponse.data.token)
+        navigate('/home')
+      } else {
+        alert('Email or Password invalid')
+      }
     } catch (error) {
-      alert('ERROR', error)
+      alert('Email or Password invalid')
     }
   }
 
@@ -65,25 +69,20 @@ export default function Login() {
         <Divider />
 
         <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
-          {/* <Link to={"/signUp"}> */}
-            <Button
-              onClick={() => goToRegister()}
-              size="small"
-              color="secondary"
-              variant="contained"
-              sx={{ marginRight: "1vw" }}
-            >
-              Register
-            </Button>
-          {/* </Link> */}
+          <Button
+            onClick={() => navigate('/signUp')}
+            size="small"
+            color="secondary"
+            variant="contained"
+            sx={{ marginRight: "1vw" }}>
+            Register
+          </Button>
 
-          {/* <Link to={"/home"}> */}
-            <Button
+          <Button
             onClick={() => onLogin()}
             size="small" color="primary" variant="contained">
-              Login
-            </Button>
-          {/* </Link> */}
+            Login
+          </Button>
         </CardActions>
       </Card>
     );

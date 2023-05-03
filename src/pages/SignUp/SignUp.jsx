@@ -12,8 +12,8 @@ import {
   TextField,
 } from "@mui/material";
 import { blue } from "@mui/material/colors";
-import { Link, useNavigate } from "react-router-dom";
-// import { login } from "../../services/login";
+import { useNavigate } from "react-router-dom";
+import { signUp } from "../../services/auth";
 // import './SignUp.css'
 
 export default function SignUp() {
@@ -28,29 +28,23 @@ export default function SignUp() {
   const [role/*, setRole*/] = useState("user");
   const navigate = useNavigate();
 
-  const register = async () => {
-    const result = await login({
-      username,
-      fullname,
-      email,
-      password,
-      address,
-      phone,
-      category,
-      role,
-    });
-
-    if (result === 200) {
-      navigate("/home");
-    } else {
-      console.log(result);
-    }
-  }
-
   function handleClick() {
     setIsPassVisible(!isPassVisible);
   }
 
+  async function goToRegister() {
+    try {
+      if (username && fullname && email && password && address && phone && category) {
+        const loginResponse = await signUp({username, fullname, email, password, address, phone, category, role})
+        localStorage.setItem('token', loginResponse.data.token)
+        navigate('/home')
+      } else {
+        alert('Any field is invalid')
+      }
+    } catch (error) {
+      alert('Any field is invalid')
+    }
+  }
 
   function render() {
     return (
@@ -157,16 +151,20 @@ export default function SignUp() {
         <Divider />
 
         <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Link to={"/home"}>
-            <Button
-              size="small"
-              color="secondary"
-              variant="contained"
-              onClick={register}
-            >
-              Register
-            </Button>
-          </Link>
+          <Button
+            onClick={() => goToRegister()}
+            size="small"
+            color="secondary"
+            variant="contained"
+            sx={{ marginRight: "1vw" }}>
+            Register
+          </Button>
+
+          <Button
+            onClick={() => navigate('/login')}
+            size="small" color="primary" variant="contained">
+            Login
+          </Button>
         </CardActions>
       </Card>
     );

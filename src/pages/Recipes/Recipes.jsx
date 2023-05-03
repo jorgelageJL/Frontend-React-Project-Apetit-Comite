@@ -157,12 +157,12 @@ function Recipes() {
   }
   return (
     <>
-      {/* <div  style={{width:"100%", height:"auto"}}>
+      <div  style={{width:"100%", height:"auto"}}>
         <Header/>
         <Grid container sx={{  justifyContent: "start", flexWrap: "wrap" }}>
           {displayRecipes()}
         </Grid>
-      </div> */}
+      </div>
       
     </>
 
