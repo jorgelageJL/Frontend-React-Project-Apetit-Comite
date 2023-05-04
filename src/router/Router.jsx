@@ -10,6 +10,7 @@ import MenuPlanner from "../pages/MenuPlanner/MenuPlanner";
 import Search from "../pages/Search/Search";
 import Recipe from "../pages/Recipe/Recipe";
 import AddRecipeMenuPlanner from "../pages/AddRecipeMenuPlanner/AddRecipeMenuPlanner";
+import Profile from "../pages/Profile/Profile";
 // import LoginHeader from "../components/LoginHeader/LoginHeader";
 
 const router = createBrowserRouter([
@@ -63,7 +64,11 @@ const router = createBrowserRouter([
       {
         path:"/home/search",
         element: <Search/>
-      }
+      },
+      {
+        path:"/home/me",
+        element: <Profile/>
+      },
     ]
   },
 ]);

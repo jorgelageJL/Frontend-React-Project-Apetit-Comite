@@ -7,22 +7,30 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
 import { useParams } from 'react-router-dom';
+import { getRecipeByIngredient } from '../../Services/recipeServices';
 
 function Recipe() {
 
     const [recipe, setRecipe] = useState([])
+    const [ingredientRecipe, setIngredientRecipe] = useState([])
 
     const {id} = useParams()
 
     useEffect(() => {
       getOneRecipe();
+      getIngredientByRecipe()
     }, []);
 
     const getOneRecipe = async() => {
         const result = await getRecipe(id);
-        console.log(await getRecipe(id))
         setRecipe(result)
 
+    }
+
+    const getIngredientByRecipe = async() => {
+        const result = await getRecipeByIngredient(id)
+        console.log(result)
+        setIngredientRecipe(result)
     }
 
     function displayRecipe() {
@@ -44,7 +52,11 @@ function Recipe() {
                         <br></br>
                           {recipe.description}
                           <br></br> <br></br>
-                         <b>Ingredientes:</b>{recipe.ingredient}
+                         <b>Ingredientes:</b>{ingredientRecipe.map( i => {
+                            return(
+                                i.recipe_ingredient.quantity + i.recipe_ingredient.unit + ' de ' + i.name + ' '
+                                ) 
+                         })}
                           <br></br><br></br>
                           <b>Instrucciones:</b> {recipe.instruction}
                         </Typography>

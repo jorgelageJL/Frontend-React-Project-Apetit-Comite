@@ -23,7 +23,18 @@ async function getRecipe (id){
 
 }
 
+async function getRecipeByIngredient(id) {
+    const result = await api.get(`/recipe/${id}/ingredient`,
+    {
+        headers: {
+            token: localStorage.getItem('token')
+        }
+    })
+   return result.data
+}
+
 export {
     getAllRecipes,
-    getRecipe
+    getRecipe,
+    getRecipeByIngredient
 }

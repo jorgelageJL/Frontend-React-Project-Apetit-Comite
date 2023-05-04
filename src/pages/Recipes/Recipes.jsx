@@ -14,6 +14,8 @@ import { Link as RouterLink } from 'react-router-dom';
 export default function Recipes() {
 
   const [recipes, setRecipes] = useState([])
+  const [selectedDay, setSelectedDay] = useState('');
+  const [showPlanner, setShowPlanner] = useState(false);
 
 useEffect(() => {
 
@@ -30,14 +32,12 @@ useEffect(() => {
       return (
         <Grid item xs={12} sm={6} md={4} xl={3}>
           <Card sx={{ maxWidth: "345px", padding: "10px", margin: "10px", flexDirection: "row", }}>
-       
             <CardActionArea component={RouterLink} to={`${r.id}`}>
               <CardMedia
                 component="img"
                 height="140"
                 image={r.img}
               />
-            
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {r.name}
@@ -47,28 +47,26 @@ useEffect(() => {
                 </Typography>
               </CardContent>
             </CardActionArea>
-     
             <CardActions>
-              <Button variant="contained" component={RouterLink} to={`add`} sx={{ backgroundColor: "black", left: "50px" }}>
+              <Button variant="contained" onClick={() => {setSelectedDay(''); setShowPlanner(true);}} component={RouterLink} to={`add`} sx={{ backgroundColor: "black", left: "50px" }}>
                 + Add To Planner
               </Button>
             </CardActions>
-
           </Card>
         </Grid>
       )
     })
   }
 
-  
   return (
     <>
       <div style={{ width: "100%", height: "auto" }}>
-        {/* <Header/> */}
         <Grid container sx={{ justifyContent: "start", flexWrap: "wrap" }}>
           {displayRecipes()}
         </Grid>
       </div>
+      {showPlanner && <AddRecipeMenuPlanner selectedDay={selectedDay} setShowPlanner={setShowPlanner} />}
     </>
   )
-  }
+}
+
