@@ -14,7 +14,7 @@ import {
 import { blue } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../../services/auth";
-// import './SignUp.css'
+import './SignUp.css'
 
 export default function SignUp() {
   const [isPassVisible, setIsPassVisible] = useState(false);
@@ -35,11 +35,11 @@ export default function SignUp() {
   async function goToRegister() {
     try {
       if (username && fullname && email && password && address && phone && category) {
-        const loginResponse = await signUp({username, fullname, email, password, address, phone, category, role})
+        const loginResponse = await signUp({ username, fullname, email, password, address, phone, category, role })
         localStorage.setItem('token', loginResponse.data.token)
         navigate('/home')
       } else {
-        alert('Any field is invalid')
+        throw new Error()
       }
     } catch (error) {
       alert('Any field is invalid')

@@ -1,20 +1,19 @@
-import"./Home.css";
+import "./Home.css";
 import SampleImage from "../../assets/Sample_Image.png"
-import {Grid} from '@mui/material';
+import { Grid } from '@mui/material';
 
-const Home = () => {
+export default function Home() {
   return (
     <div className="home">
-      <Grid container spacing={10} 
-      sx={{ 
-        display: 'flex', 
-        width: '100%', 
-        margin: '0 auto', 
-        maxWidth: '1800px',
-        paddingRight: '75px',
-        paddingBottom: '100px'
-        }}
-        >
+      <Grid container spacing={10}
+        sx={{
+          display: 'flex',
+          width: '100%',
+          margin: '0 auto',
+          maxWidth: '1800px',
+          paddingRight: '75px',
+          paddingBottom: '100px'
+        }}>
 
         <Grid item md={8} xs={12}>
           <div className="recommend">
@@ -61,9 +60,3 @@ const Home = () => {
     </div>
   );
 };
-
-export default Home;
-
-
-
-

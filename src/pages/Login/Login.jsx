@@ -4,7 +4,7 @@ import { Button, Card, CardActions, CardContent, CardHeader, Divider, Grid, Icon
 import { blue } from "@mui/material/colors";
 import { login } from '../../services/auth'
 import { useNavigate } from "react-router-dom";
-// import './Login.css'
+import './Login.css'
 
 export default function Login() {
   const [isPassVisible, setIsPassVisible] = useState(false);
@@ -23,7 +23,7 @@ export default function Login() {
         localStorage.setItem('token', loginResponse.data.token)
         navigate('/home')
       } else {
-        alert('Email or Password invalid')
+        throw new Error()
       }
     } catch (error) {
       alert('Email or Password invalid')

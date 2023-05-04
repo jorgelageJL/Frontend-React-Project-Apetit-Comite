@@ -11,16 +11,12 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import HeaderLogo from "../../assets/HEADER_LOGO.svg"
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+// import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from 'react-router-dom';
-
-
-
 
 const pages = ["HOME", "ALL RECIPES", "MEAL PLANNER", "BY DIET"];
 
-
-function LoginHeader() {
+export default function LoginHeader() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -35,10 +31,10 @@ function LoginHeader() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  
-   const handleOpenUserMenu = (event) => {
-     setAnchorElUser(event.currentTarget);
-   };
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
   return (
     <AppBar position="static" sx={{ background: "#ffeb3b", color: "black" }}>
       <Container maxWidth="x2">
@@ -126,15 +122,15 @@ function LoginHeader() {
           </Box>
 
           <Button>
-          <Link to="/login" style={{ textDecoration: 'none', color:"black"}}>
-          <p> <b>SIGN UP &nbsp;  </b> </p>
-          </Link>
+            <Link to="/signUp" style={{ textDecoration: 'none', color: "black" }}>
+              <p> <b>SIGN UP &nbsp;  </b> </p>
+            </Link>
           </Button>
-          <b style={{padding:"10px", marginRight:"5px"}}> | </b>
+          <b style={{ padding: "10px", marginRight: "5px" }}> | </b>
           <Button>
-          <Link to="/login" style={{ textDecoration: 'none', color:"black"}}>
-          <p > <b>LOG IN &nbsp;  </b> </p>
-          </Link>
+            <Link to="/login" style={{ textDecoration: 'none', color: "black" }}>
+              <p > <b>LOG IN &nbsp;  </b> </p>
+            </Link>
           </Button>
           <Box sx={{ flexGrow: 0 }}>
             <Menu
@@ -158,7 +154,6 @@ function LoginHeader() {
         </Toolbar>
       </Container>
     </AppBar>
-  
+
   );
 }
-export default LoginHeader;

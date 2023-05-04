@@ -9,11 +9,4 @@ const api = axios.create({
     // }
 })
 
-// async function getQuery(query = '/recipe/'){
-//     const { data } = await api.get(query)
-//     // console.log("Data", data["data"])
-//     console.log("Data", data)
-//     return data.data
-// }
-
 export default api;
