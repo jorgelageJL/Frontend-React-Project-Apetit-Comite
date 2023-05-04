@@ -10,6 +10,17 @@ async function addRecipeMenuPlanner (){
    return result.data
 }
 
+async function getProfile () {
+    const result = await api.get('/user/me',
+    {
+        headers: {
+            token: localStorage.getItem('token')
+        }
+    })
+    console.log(result)
+   return result.data
+}
 export {
-    addRecipeMenuPlanner
+    addRecipeMenuPlanner,
+    getProfile
 }
