@@ -12,13 +12,6 @@ import Kimchi from '../../assets/Kimchi.png'
 import BlueCheese from '../../assets/BlueCheese.png'
 import Beer from '../../assets/Beer.png'
 
-// Recipe Section - Cards
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-
 export default function Home() {
   return (
     <div className="home">
@@ -105,31 +98,6 @@ export default function Home() {
 
 
 {/* --- Recipes Section --- */}
-
-      <div className='Home_Recipes'>
-        <h1>Recipes <DoubleArrowIcon sx={{ color: "green" }} /></h1>
-        
-        <Grid>
-          <Card sx={{ maxWidth: 345 }}>
-            <CardActionArea>
-              <CardMedia
-              component="img"
-              height="140"
-              image=''
-              alt="FoodBox"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  FOOD BOX 1
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  “Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Grid>
         
       </div>
 
