@@ -5,19 +5,12 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
 import { getAllRecipes } from '../../Services/recipeServices';
+import { Link as RouterLink } from 'react-router-dom';
+
 // import Header from '../../components/Header/Header'
 
 
 
-const recetas = [
-  {
-    nombre: "Ensalada César",
-    descripcion: "Una ensalada clásica con pollo, lechuga romana, parmesano y aderezo César",
-    imagen:"https://upload.wikimedia.org/wikipedia/commons/9/96/Lagarto_ocelado_Sierra_Sur_Ja%C3%A9n_2019_24J_01.jpg"
-
-  },
-
-]
 export default function Recipes() {
 
   const [recipes, setRecipes] = useState([])
@@ -37,15 +30,15 @@ useEffect(() => {
       return (
         <Grid item xs={12} sm={6} md={4} xl={3}>
           <Card sx={{ maxWidth: "345px", padding: "10px", margin: "10px", flexDirection: "row", }}>
-
-            <CardActionArea>
+       
+            <CardActionArea component={RouterLink} to={`${r.id}`}>
               <CardMedia
                 component="img"
                 height="140"
                 image={r.img}
               />
+            
               <CardContent>
-
                 <Typography gutterBottom variant="h5" component="div">
                   {r.name}
                 </Typography>
@@ -54,11 +47,13 @@ useEffect(() => {
                 </Typography>
               </CardContent>
             </CardActionArea>
+     
             <CardActions>
-              <Button variant="contained" sx={{ backgroundColor: "black", left: "50px" }}>
+              <Button variant="contained" component={RouterLink} to={`add`} sx={{ backgroundColor: "black", left: "50px" }}>
                 + Add To Planner
               </Button>
             </CardActions>
+
           </Card>
         </Grid>
       )
