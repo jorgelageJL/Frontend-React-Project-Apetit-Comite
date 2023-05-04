@@ -12,6 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import HeaderLogo from "../../assets/HEADER_LOGO.svg"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { logout } from '../../services/auth';
 import "./Header.css"
 
 
@@ -23,7 +24,7 @@ const settings = [
   },
   {
     title: 'LOGOUT',
-    function: null
+    function: logout
   },
 ];
 
