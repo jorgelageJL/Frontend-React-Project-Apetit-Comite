@@ -1,6 +1,7 @@
+.p {
+  f
+}
 
-.recommend h1,
-.trend h1,
 .recommend h2,
 .trend h2,
 .recommend p,
@@ -12,15 +13,41 @@
   font-size: 2rem;
 }
 
+.recommend h1 {
+  font-size: 50px;
+}
+
 @media (max-width: 600px) {
   .recommend h1,
-  .trend h1,
   .recommend h2,
   .trend h2,
   .recommend p,
   .trend p {
-    font-size: 1.5rem;
+    font-size: .875rem;
+  }
+  .trend h1 {
+    font-size: 22px; /* font size for smaller screens */
   }
 }
 
+.trend {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;  /* font size for bigger screens */
+}
 
+/* Link: Underline Hover */
+
+a {
+  text-decoration: none; /* remove default underline */
+  color: #000; /* set link color */
+  transition: all 0.2s ease-in-out; /* add transition effect */
+}
+
+a:hover > h1,
+a:hover > h2 {
+  text-decoration: underline; /* underline on hover */
+}
