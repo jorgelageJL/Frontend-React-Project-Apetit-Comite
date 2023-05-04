@@ -99,6 +99,6 @@ export default function Home() {
 
       {/* --- Recipes Section --- */}
 
-    </div>
+ 
   );
 };
