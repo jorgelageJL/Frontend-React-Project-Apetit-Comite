@@ -12,25 +12,14 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import HeaderLogo from "../../assets/HEADER_LOGO.svg"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { logout } from '../../Services/auth';
+import { useNavigate } from 'react-router-dom';
 import "./Header.css"
 
-
-const pages = ['HOME', 'ALL RECIPES', 'MEAL PLANNER', 'BY DIET'];
-const settings = [
-  {
-    title: 'PROFILE',
-    function: null
-  },
-  {
-    title: 'LOGOUT',
-    function: logout
-  },
-];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate()
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -46,6 +35,24 @@ function Header() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const pages = ['HOME', 'ALL RECIPES', 'MEAL PLANNER', 'BY DIET'];
+
+  const settings = [
+    {
+      title: 'PROFILE',
+      fun: () => {
+        
+      }
+    },
+    {
+      title: 'LOGOUT',
+      fun: () => {
+        localStorage.removeItem('token')
+        navigate('/login')
+      }
+    },
+  ];
 
   return (
     <AppBar position="static" sx={{ background: "#FDDA04", color: "black" }}>
@@ -156,7 +163,7 @@ function Header() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting.title} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={setting.fun}>
                   <Typography textAlign="center" >{setting.title}</Typography>
                 </MenuItem>
               ))}

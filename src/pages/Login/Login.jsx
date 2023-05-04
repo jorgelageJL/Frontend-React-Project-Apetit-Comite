@@ -42,6 +42,7 @@ export default function Login() {
             placeholder="example@gmail.com"
             fullWidth={true}
             margin="dense"
+            autoComplete="on"
             InputProps={{
               startAdornment: <Email />,
             }}

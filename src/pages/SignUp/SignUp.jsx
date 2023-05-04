@@ -59,6 +59,7 @@ export default function SignUp() {
             placeholder="jose"
             fullWidth={true}
             margin="dense"
+            autoComplete="on"
             InputProps={{
               startAdornment: <TextFields />,
             }}
@@ -72,6 +73,7 @@ export default function SignUp() {
             placeholder="Pepito Pérez"
             fullWidth={true}
             margin="dense"
+            autoComplete="on"
             InputProps={{
               startAdornment: <TextFields />,
             }}
@@ -85,6 +87,7 @@ export default function SignUp() {
             placeholder="example@gmail.com"
             fullWidth={true}
             margin="dense"
+            autoComplete="on"
             onChange={(e) => setEmail(e.target.value)}
             InputProps={{
               startAdornment: <Email />,
@@ -115,6 +118,7 @@ export default function SignUp() {
             placeholder="Paseo Chil ..."
             fullWidth={true}
             margin="dense"
+            autoComplete="on"
             onChange={(e) => setAddress(e.target.value)}
             InputProps={{
               startAdornment: <Directions />,
@@ -128,6 +132,7 @@ export default function SignUp() {
             placeholder="678123456"
             fullWidth={true}
             margin="dense"
+            autoComplete="on"
             onChange={(e) => setPhone(e.target.value)}
             InputProps={{
               startAdornment: <Phone />,
@@ -141,6 +146,7 @@ export default function SignUp() {
             placeholder="Vegano"
             fullWidth={true}
             margin="dense"
+            autoComplete="on"
             onChange={(e) => setCategory(e.target.value)}
             InputProps={{
               startAdornment: <FoodBank />,
