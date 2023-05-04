@@ -156,8 +156,8 @@ function Header() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting.title} onClick={setting.function}>
-                  <Typography textAlign="center">{setting.title}</Typography>
+                <MenuItem key={setting.title} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center" >{setting.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
