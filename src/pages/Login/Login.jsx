@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Email, Lock, Visibility, VisibilityOff } from "@mui/icons-material";
 import { Button, Card, CardActions, CardContent, CardHeader, Divider, Grid, IconButton, TextField, } from "@mui/material";
 import { blue } from "@mui/material/colors";
-import { login } from '../../services/auth'
+import { login } from '../../Services/auth'
 import { useNavigate } from "react-router-dom";
 import './Login.css'
 

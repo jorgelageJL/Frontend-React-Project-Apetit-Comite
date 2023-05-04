@@ -12,7 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import HeaderLogo from "../../assets/HEADER_LOGO.svg"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { logout } from '../../services/auth';
+import { logout } from '../../Services/auth';
 import "./Header.css"
 
 

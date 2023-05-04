@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
-import { signUp } from "../../services/auth";
+import { signUp } from "../../Services/auth";
 import './SignUp.css'
 
 export default function SignUp() {

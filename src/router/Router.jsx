@@ -7,6 +7,8 @@ import SignUp from "../pages/signUp/signUp";
 import Home from "../pages/Home/Home";
 import Recipes from "../pages/Recipes/Recipes";
 import MenuPlanner from "../pages/MenuPlanner/MenuPlanner";
+import Search from "../pages/Search/Search";
+import Recipe from "../pages/Recipe/Recipe";
 // import LoginHeader from "../components/LoginHeader/LoginHeader";
 
 const router = createBrowserRouter([
@@ -46,8 +48,16 @@ const router = createBrowserRouter([
         element: <Recipes />
       },
       {
+        path:"/home/recipes/:id",
+        element: <Recipe/>
+      },
+      {
         path: "/home/menuplanner",
         element: <MenuPlanner/>
+      },
+      {
+        path:"/home/search",
+        element: <Search/>
       }
     ]
   },

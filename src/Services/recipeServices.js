@@ -1,23 +1,29 @@
-import { getResource } from `./QueryServices`;
-const PATH = 'recipe'
 
-// GET
-export async function getAllRecipes() {
-    return getResource(`${PATH}`)
+import api from './serviceConfig'
+
+async function getAllRecipes (){
+    const result = await api.get('/recipe',
+    {
+        headers: {
+            token: localStorage.getItem('token')
+        }
+    })
+   return result.data
+
 }
 
-export async function getRecipesWithIngredient(id) {
-    return getResource(`${PATH}/ingredient/${id}`)
+async function getRecipe (id){
+    const result = await api.get(`/recipe/${id}`,
+    {
+        headers: {
+            token: localStorage.getItem('token')
+        }
+    })
+   return result.data
+
 }
 
-export async function getOneRecipe(id) {
-    return getResource(`${PATH}/${id}`)
+export {
+    getAllRecipes,
+    getRecipe
 }
-
-// POST
-
-
-// PUT
-
-
-// DELETE
