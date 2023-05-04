@@ -20,7 +20,7 @@ export default function Footer() {
       <AppBar
         position="static"
         color="secondary"
-        sx={{ backgroundColor: "#ffeb3b" }}
+        sx={{ backgroundColor: "#FDDA04" }}
       >
         <Toolbar variant="dense">
           <Typography
@@ -50,7 +50,7 @@ export default function Footer() {
                 </a>
               </IconButton>
             <div>
-              2023 © Appetit Comite-SCE01 - Final Projext | EU Privacy Policy
+              2023 © Appetit Comite-SCE01 - Final Project | EU Privacy Policy
             </div>
           </Typography>
         </Toolbar>
