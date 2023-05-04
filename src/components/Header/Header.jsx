@@ -16,7 +16,16 @@ import "./Header.css"
 
 
 const pages = ['HOME', 'ALL RECIPES', 'MEAL PLANNER', 'BY DIET'];
-const settings = ['PROFILE', 'LOGOUT'];
+const settings = [
+  {
+    title: 'PROFILE',
+    function: null
+  },
+  {
+    title: 'LOGOUT',
+    function: null
+  },
+];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -146,8 +155,8 @@ function Header() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting.title} onClick={setting.function}>
+                  <Typography textAlign="center">{setting.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>

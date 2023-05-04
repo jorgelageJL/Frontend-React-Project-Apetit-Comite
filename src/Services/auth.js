@@ -9,3 +9,8 @@ export async function signUp(signUpData) {
   const response = await api.post('/user/signUp', signUpData)
   return response
 }
+
+export async function logout() {
+  localStorage.removeItem('token')
+  navigate('/init')
+}
