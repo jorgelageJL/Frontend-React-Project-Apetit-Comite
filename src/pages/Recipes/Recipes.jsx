@@ -7,10 +7,6 @@ import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
 import { getAllRecipes } from '../../Services/recipeServices';
 import { Link as RouterLink } from 'react-router-dom';
 
-// import Header from '../../components/Header/Header'
-
-
-
 export default function Recipes() {
 
   const [recipes, setRecipes] = useState([])
