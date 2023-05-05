@@ -1,40 +1,55 @@
 
 import api from './serviceConfig'
 
-async function getAllRecipes (){
+async function getAllRecipes() {
     const result = await api.get('/recipe',
-    {
-        headers: {
-            token: localStorage.getItem('token')
-        }
-    })
-   return result.data
+        {
+            headers: {
+                token: localStorage.getItem('token')
+            }
+        })
+    return result.data
 
 }
 
-async function getRecipe (id){
+async function getRecipe(id) {
     const result = await api.get(`/recipe/${id}`,
-    {
-        headers: {
-            token: localStorage.getItem('token')
-        }
-    })
-   return result.data
+        {
+            headers: {
+                token: localStorage.getItem('token')
+            }
+        })
+    return result.data
 
 }
 
 async function getRecipeByIngredient(id) {
     const result = await api.get(`/recipe/${id}/ingredient`,
+        {
+            headers: {
+                token: localStorage.getItem('token')
+            }
+        })
+    return result.data
+}
+
+async function getOneRecipeByName(name) {
+    const result = await api.post(`/recipe/getOneRecipeByName`,
     {
+        
+            name: name
+        ,
         headers: {
             token: localStorage.getItem('token')
         }
     })
-   return result.data
+    console.log(result.data)
+    return result.data
 }
 
 export {
     getAllRecipes,
     getRecipe,
-    getRecipeByIngredient
+    getRecipeByIngredient,
+    getOneRecipeByName
 }

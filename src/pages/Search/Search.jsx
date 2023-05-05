@@ -3,7 +3,8 @@ import TextField from '@mui/material/TextField';
 import './Search.css'
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import { useState } from 'react';
-import { getRecipe } from '../../Services/recipeServices';
+import { getOneRecipeByName } from '../../Services/recipeServices';
+import { Link as RouterLink } from 'react-router-dom';
 
 export default function Search() {
   const [text, setText] = useState('')
@@ -11,7 +12,7 @@ export default function Search() {
 
   const handleSearch = () => {
     if (text) {
-      setRecipe(getRecipe(text))
+      setRecipe(getOneRecipeByName(text))
     }
   }
 
@@ -35,15 +36,9 @@ export default function Search() {
       {/* {CARD} */}
       <Grid item xs={12} sm={6} md={4} xl={3}>
         <Card sx={{ maxWidth: "345px", padding: "10px", margin: "10px", flexDirection: "row", }}>
-
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="140"
-              image={recipe.img}
-            />
+          <CardActionArea component={RouterLink} to={`${recipe.id}`}>
+            <CardMedia component="img" height="140" image={recipe.img} />
             <CardContent>
-
               <Typography gutterBottom variant="h5" component="div">
                 {recipe.name}
               </Typography>
@@ -52,8 +47,10 @@ export default function Search() {
               </Typography>
             </CardContent>
           </CardActionArea>
+
           <CardActions>
-            <Button variant="contained" sx={{ backgroundColor: "black", left: "50px" }}>
+            <Button variant="contained" onClick={() => { setSelectedDay(''); setShowPlanner(true); }}
+              component={RouterLink} to={`add`} sx={{ backgroundColor: "black", left: "50px" }}>
               + Add To Planner
             </Button>
           </CardActions>
