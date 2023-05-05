@@ -36,13 +36,38 @@ function Header() {
     setAnchorElUser(null);
   };
 
-  const pages = ['HOME', 'ALL RECIPES', 'MEAL PLANNER', 'BY DIET'];
+  const pages = [
+    {
+      title: 'HOME',
+      fun: () => {
+        navigate('/home')
+      }
+    },
+    {
+      title: 'ALL RECIPES',
+      fun: () => {
+        navigate('/home/recipes')
+      }
+    },
+    {
+      title: 'MEAL PLANNER',
+      fun: () => {
+        navigate('/home/menuplanner')
+      }
+    },
+    {
+      title: 'BY DIET',
+      fun: () => {
+        navigate('/home/search')
+      }
+    }
+  ];
 
   const settings = [
     {
       title: 'PROFILE',
       fun: () => {
-        
+        navigate('/home/me')
       }
     },
     {
@@ -103,8 +128,8 @@ function Header() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page} onClick={page.fun}>
+                  <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -132,10 +157,10 @@ function Header() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={page.fun}
                 sx={{ my: 2, color: "black", display: "block" }}
               >
-                {page}
+                {page.title}
               </Button>
             ))}
           </Box>
