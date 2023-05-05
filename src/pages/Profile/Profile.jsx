@@ -1,19 +1,36 @@
 import React, { useEffect, useState } from 'react'
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { Box, Grid } from '@mui/material';
-import CancelIcon from '@mui/icons-material/Cancel';
-import EditIcon from '@mui/icons-material/Edit';
+
 import { getProfile } from '../../Services/userServices';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { deleteProfile } from '../../Services/userServices';
+import EditIcon from '@mui/icons-material/Edit';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Link } from 'react-router-dom';
+import { updateProfile } from '../../Services/userServices';
+
+
+import { Directions, Email, FoodBank, Lock, Phone, TextFields, Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Divider,
+  Grid,
+  IconButton,
+  TextField,
+} from "@mui/material";
+import { blue } from "@mui/material/colors";
+
 
 
 export default function Profile() {
 
   const [userData, setUserData] = useState([])
+  const [profileData, setProfileData] = useState([])  
+
+
 
   useEffect(() => {
     getUserData()
@@ -25,53 +42,193 @@ export default function Profile() {
     setUserData(result)
 
 }
-  return (
-   
-    <Grid  item xs={12} sm={12} md={12} sx={{display:"flex", justifyContent:"center",}}>
-    <Card sx={{ width:{xl:"60%", lg:"60%", sm:"60%"}, maxWidth:"60%",height:"110%", display:"flex"}}>
-      <Box sx={{ display: 'flex',height: '100%' }}>
-        <Box sx={{ flexGrow: 1 }}>
-        </Box>
+
+  const deleteUser = async () => {
+    await deleteProfile();
+
+  }
+  
+  const profile = async () => {
+    const result = await updateProfile(profileData)
+    console.log(result)
+   setProfileData(result)
+  }
+
+  const [isPassVisible, setIsPassVisible] = useState(false);
+  const [username, setUsername] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [category, setCategory] = useState("");
+  const [role/*, setRole*/] = useState("user");
+
+  function handleClick() {
+    setIsPassVisible(!isPassVisible);
+  }
+
+
+
+  function render() {
+    return (
+      <Card sx={{ width: "90%", backgroundColor: blue[100] }} raised={true}>
+        <CardHeader title="PROFILE"></CardHeader>
+
         <CardContent>
-          <Typography variant="body2" color="text.primary">
-           <b>USERNAME:</b>  {userData.username}
-           <br></br> <br></br>
-          </Typography>
-          <Typography variant="body2" color="text.primary">
-           <b>FULLNAME:</b>  {userData.fullname}
-           <br></br> <br></br>
-          </Typography>
-          <Typography variant="body2" color="text.primary">
-           <b>EMAIL:</b> {userData.email}
-           <br></br> <br></br> 
-          </Typography>
-          <Typography variant="body2" color="text.primary">
+          <TextField
+            type="text"
+            label="username"
+            variant="outlined"
+            placeholder={userData.username}
+            value={profileData.username}
+            fullWidth={true}
+            margin="dense"
+            InputProps={{
+              startAdornment: <TextFields />,
+            }}
+            onChange={(e) => setUsername(e.target.value)}
+          ></TextField>
 
-          </Typography>
-          <Typography variant="body2" color="text.primary">
-           <b>ADDRESS:</b> {userData.address}
-           <br></br> <br></br>
-          </Typography>
-          <Typography variant="body2" color="text.primary">
-           <b>PHONE:</b> {userData.phone}
-           <br></br> <br></br>
-          </Typography>
-          <Typography variant="body2" color="text.primary">
-           <b>CATEGORY:</b> {userData.category}
-           <br></br> <br></br>
-          </Typography>
-     
+          <TextField
+            type="text"
+            label="Full name"
+            variant="outlined"
+            placeholder={userData.fullname}
+            value={userData.fullname}
+            fullWidth={true}
+            margin="dense"
+            InputProps={{
+              startAdornment: <TextFields />,
+            }}
+            onChange={(e) => setFullname(e.target.value)}
+          ></TextField>
+
+          <TextField
+            type="email"
+            label="Email"
+            variant="outlined"
+            placeholder={userData.email}
+            value={profileData.email}
+            fullWidth={true}
+            margin="dense"
+            onChange={(e) => setEmail(e.target.value)}
+            InputProps={{
+              startAdornment: <Email />,
+            }}
+          ></TextField>
+
+          <TextField
+            label="Password"
+            type={isPassVisible ? "text" : "password"}
+            variant="outlined"
+            fullWidth={true}
+            margin="dense"
+            onChange={(e) => setPassword(e.target.value)}
+            InputProps={{
+              startAdornment: <Lock />,
+              endAdornment: (
+                <IconButton onClick={handleClick}>
+                  {isPassVisible ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              ),
+            }}
+          ></TextField>
+
+          <TextField
+            type="text"
+            label="Address"
+            variant="outlined"
+            placeholder={userData.address}
+            value={userData.address}
+            fullWidth={true}
+            margin="dense"
+            onChange={(e) => setAddress(e.target.value)}
+            InputProps={{
+              startAdornment: <Directions />,
+            }}
+          ></TextField>
+
+          <TextField
+            type="phone"
+            label="Phone"
+            variant="outlined"
+            placeholder={userData.phone}
+            value={userData.phone}
+            fullWidth={true}
+            margin="dense"
+            onChange={(e) => setPhone(e.target.value)}
+            InputProps={{
+              startAdornment: <Phone />,
+            }}
+          ></TextField>
+
+          <TextField
+            type="text"
+            label="Category"
+            variant="outlined"
+            placeholder={userData.category}
+            value={userData.category}
+            fullWidth={true}
+            margin="dense"
+            onChange={(e) => setCategory(e.target.value)}
+            InputProps={{
+              startAdornment: <FoodBank />,
+            }}
+          ></TextField>
         </CardContent>
-        <CardActions  sx={{ flexDirection: 'column', width:"30vw" }}>
 
-          <Button  sx={{ marginTop: '50px', color:"black", display:"flex", justifyContent:"flex-end", marginLeft:"300px" }}>
-            <EditIcon/>
-            </Button>
+        <Divider />
+
+        <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Link to='/home'> 
+        <Button
+            onClick={() => goToRegister()}
+            size="small"
+            color="secondary"
+            variant="contained"
+            startIcon={<ArrowBackIcon/>}
+            sx={{ marginRight: "1vw" }}>
+            BACK
+          </Button>
+          </Link>
+
+          <Link to ="/init">
+          <Button
+        variant="contained"
+        color="error"
+        startIcon={<DeleteIcon/>}
+        sx={{ marginRight: "1vw" }}
+        onClick={deleteUser}
+      >
+        Delete
+      </Button>
+      </Link>
+
+          <Button
+            size="small" color="primary" variant="contained" onClick={profile} startIcon={<EditIcon/>}>
+            EDIT
+          </Button>
         </CardActions>
-      </Box>
-    </Card>
-  </Grid>
-   
-)}
+      </Card>
+    );
+  }
+
+  return (
+    <Grid
+      container /*item xs={12} md={8} xl={10}*/
+      sx={{
+        height: "85vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignContent: "center",
+      }}
+    >
+      {render()}
+    </Grid>
+  );
+}
+
 
 

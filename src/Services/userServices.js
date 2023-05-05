@@ -17,10 +17,36 @@ async function getProfile () {
             token: localStorage.getItem('token')
         }
     })
+
+   return result.data
+}
+
+async function deleteProfile () {
+    const result = await api.delete('/user/me',
+    {
+        headers: {
+            token: localStorage.getItem('token')
+        }
+    })
+
+   return result.data
+}
+
+async function updateProfile () {
+    const result = await api.put('/user/me',
+    {
+        headers: {
+            token: localStorage.getItem('token')
+        }
+    })
     console.log(result)
    return result.data
 }
+
+
 export {
     addRecipeMenuPlanner,
-    getProfile
+    getProfile,
+    deleteProfile,
+    updateProfile
 }
