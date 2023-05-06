@@ -5,22 +5,28 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
 import { getAllRecipes } from '../../Services/recipeServices';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, redirect } from 'react-router-dom';
+import AddRecipeMenuPlanner from '../AddRecipeMenuPlanner/AddRecipeMenuPlanner';
 
-export default function Recipes() {
+// const [id, setShowPlanner] = useState(false);
+function Recipes() {
 
   const [recipes, setRecipes] = useState([])
-  const [selectedDay, setSelectedDay] = useState('');
   const [showPlanner, setShowPlanner] = useState(false);
 
-useEffect(() => {
+  useEffect(() => {
 
-  getRecipes()
-}, [])
+    getRecipes()
+  }, [])
 
- async function getRecipes () {
+  async function getRecipes() {
     const result = await getAllRecipes()
     setRecipes(result)
+  }
+
+  const handleAddToPlanner = (id) => {
+    alert(id)
+    redirect (<AddRecipeMenuPlanner id={id} />)
   }
 
   function displayRecipes() {
@@ -44,7 +50,8 @@ useEffect(() => {
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button variant="contained" onClick={() => {setSelectedDay(''); setShowPlanner(true);}} component={RouterLink} to={`add`} sx={{ backgroundColor: "black", left: "50px" }}>
+              <Button variant="contained" onClick={() => { handleAddToPlanner(r.id); }}
+                component={RouterLink} to={`add`} sx={{ backgroundColor: "black", left: "50px" }}>
                 + Add To Planner
               </Button>
             </CardActions>
@@ -66,3 +73,4 @@ useEffect(() => {
   )
 }
 
+export default Recipes
