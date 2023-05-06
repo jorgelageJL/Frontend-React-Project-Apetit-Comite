@@ -14,7 +14,7 @@ function AddRecipeMenuPlanner() {
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const [recipe, setRecipe] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
-  // const [id, setId] = useState([])
+  const [id, setId] = useState([])
 
   const handleClose = () => {
     props.setShowPlanner(false);
@@ -51,9 +51,9 @@ function AddRecipeMenuPlanner() {
       setOpen(false);
     };
 
-    useEffect(() => {
-      console.log(id)
-      alert(id)
+    useEffect((recipe) => {
+      console.log(recipe)
+      // alert(recipe)
     }, [])
 
     return (

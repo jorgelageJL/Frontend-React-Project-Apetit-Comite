@@ -24,16 +24,16 @@ function Recipes() {
     setRecipes(result)
   }
 
-  const handleAddToPlanner = (id) => {
-    alert(id)
-    redirect (<AddRecipeMenuPlanner id={id} />)
+  async function handleAddToPlanner(selectedRecipe) {
+    // console.log(selectedRecipe)
+    await redirect (<AddRecipeMenuPlanner recipe={selectedRecipe} /*id={selectedRecipe.id} name={selectedRecipe.name} img={selectedRecipe.img}*/ />)
   }
 
   function displayRecipes() {
     return recipes.map(r => {
       return (
         <Grid item xs={12} sm={6} md={4} xl={3}>
-          <Card sx={{ maxWidth: "345px", padding: "10px", margin: "10px", flexDirection: "row", }}>
+          <Card key={r.id} sx={{ maxWidth: "345px", padding: "10px", margin: "10px", flexDirection: "row", }}>
             <CardActionArea component={RouterLink} to={`${r.id}`}>
               <CardMedia
                 component="img"
@@ -50,7 +50,7 @@ function Recipes() {
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button variant="contained" onClick={() => { handleAddToPlanner(r.id); }}
+              <Button variant="contained" onClick={() => { handleAddToPlanner(r); }}
                 component={RouterLink} to={`add`} sx={{ backgroundColor: "black", left: "50px" }}>
                 + Add To Planner
               </Button>
