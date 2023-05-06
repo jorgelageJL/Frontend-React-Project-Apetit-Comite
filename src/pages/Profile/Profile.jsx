@@ -28,8 +28,14 @@ import { blue } from "@mui/material/colors";
 export default function Profile() {
 
   const [userData, setUserData] = useState([])
-  const [profileData, setProfileData] = useState([])  
-
+  const [profileData, setProfileData] = useState([])
+  const [username, setUsername] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [category, setCategory] = useState("");  
 
 
   useEffect(() => {
@@ -47,22 +53,25 @@ export default function Profile() {
     await deleteProfile();
 
   }
-  
-  const profile = async () => {
-    const result = await updateProfile(profileData)
-    console.log(result)
-   setProfileData(result)
-  }
+
+  const handleSaveChanges = async () => {
+    const updatedProfile = await updateProfile({
+      username: username,
+      fullname: fullname,
+      email: email,
+      password: password,
+      address: address,
+      phone: phone,
+      category: category
+    });
+    setUserData(updatedProfile)
+    setProfileData(updatedProfile)
+    console.log(userData)
+  };
+
 
   const [isPassVisible, setIsPassVisible] = useState(false);
-  const [username, setUsername] = useState("");
-  const [fullname, setFullname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
-  const [category, setCategory] = useState("");
-  const [role/*, setRole*/] = useState("user");
+
 
   function handleClick() {
     setIsPassVisible(!isPassVisible);
@@ -81,12 +90,12 @@ export default function Profile() {
             label="username"
             variant="outlined"
             placeholder={userData.username}
-            value={profileData.username}
             fullWidth={true}
             margin="dense"
             InputProps={{
               startAdornment: <TextFields />,
             }}
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
           ></TextField>
 
@@ -94,13 +103,13 @@ export default function Profile() {
             type="text"
             label="Full name"
             variant="outlined"
-            placeholder={userData.fullname}
-            value={userData.fullname}
+            placeholder={fullname}
             fullWidth={true}
             margin="dense"
             InputProps={{
               startAdornment: <TextFields />,
             }}
+            value={fullname}
             onChange={(e) => setFullname(e.target.value)}
           ></TextField>
 
@@ -109,9 +118,9 @@ export default function Profile() {
             label="Email"
             variant="outlined"
             placeholder={userData.email}
-            value={profileData.email}
             fullWidth={true}
             margin="dense"
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
             InputProps={{
               startAdornment: <Email />,
@@ -124,6 +133,7 @@ export default function Profile() {
             variant="outlined"
             fullWidth={true}
             margin="dense"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
             InputProps={{
               startAdornment: <Lock />,
@@ -140,9 +150,9 @@ export default function Profile() {
             label="Address"
             variant="outlined"
             placeholder={userData.address}
-            value={userData.address}
             fullWidth={true}
             margin="dense"
+            value={address}
             onChange={(e) => setAddress(e.target.value)}
             InputProps={{
               startAdornment: <Directions />,
@@ -154,9 +164,9 @@ export default function Profile() {
             label="Phone"
             variant="outlined"
             placeholder={userData.phone}
-            value={userData.phone}
             fullWidth={true}
             margin="dense"
+            value={phone}
             onChange={(e) => setPhone(e.target.value)}
             InputProps={{
               startAdornment: <Phone />,
@@ -168,9 +178,9 @@ export default function Profile() {
             label="Category"
             variant="outlined"
             placeholder={userData.category}
-            value={userData.category}
             fullWidth={true}
             margin="dense"
+            value={category}
             onChange={(e) => setCategory(e.target.value)}
             InputProps={{
               startAdornment: <FoodBank />,
@@ -204,11 +214,12 @@ export default function Profile() {
         Delete
       </Button>
       </Link>
-
+        <Link to="/init">
           <Button
-            size="small" color="primary" variant="contained" onClick={profile} startIcon={<EditIcon/>}>
+            size="small" onClick={handleSaveChanges} color="primary" variant="contained" startIcon={<EditIcon/>}>
             EDIT
           </Button>
+          </Link>
         </CardActions>
       </Card>
     );

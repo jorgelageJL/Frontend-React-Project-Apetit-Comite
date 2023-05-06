@@ -36,14 +36,12 @@ async function getRecipeByIngredient(id) {
 async function getOneRecipeByName(name) {
     const result = await api.post(`/recipe/getOneRecipeByName`,
     {
-        
-            name: name
-        ,
         headers: {
-            token: localStorage.getItem('token')
+            token: localStorage.getItem('token'),
+            name: name,
         }
     })
-    console.log(result.data)
+    console.log(result)
     return result.data
 }
 

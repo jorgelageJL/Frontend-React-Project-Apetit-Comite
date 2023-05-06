@@ -32,14 +32,14 @@ async function deleteProfile () {
    return result.data
 }
 
-async function updateProfile () {
-    const result = await api.put('/user/me',
+async function updateProfile (profileData) {
+    const result = await api.put('/user/me', profileData,
     {
         headers: {
             token: localStorage.getItem('token')
         }
     })
-    console.log(result)
+      console.log(result.data)
    return result.data
 }
 
