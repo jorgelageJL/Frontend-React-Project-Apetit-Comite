@@ -10,9 +10,10 @@ export default function Search() {
   const [text, setText] = useState('')
   const [recipe, setRecipe] = useState({})
 
-  const handleSearch = () => {
+  async function handleSearch() {
     if (text) {
-      setRecipe(getOneRecipeByName(text))
+      const result = await getOneRecipeByName(text)
+      setRecipe(result)
     }
   }
 
