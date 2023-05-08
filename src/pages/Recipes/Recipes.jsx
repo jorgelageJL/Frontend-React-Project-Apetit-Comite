@@ -3,30 +3,24 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
+import { CardActionArea, CardActions, Grid } from '@mui/material';
 import { getAllRecipes } from '../../Services/recipeServices';
 import { Link as RouterLink, redirect } from 'react-router-dom';
-import AddRecipeMenuPlanner from '../AddRecipeMenuPlanner/AddRecipeMenuPlanner';
+// import AddRecipeMenuPlanner from '../AddRecipeMenuPlanner/AddRecipeMenuPlanner';
+import AddMenuPlannerButton from '../../components/AddMenuPlannerButton/AddMenuPlannerButton';
 
-// const [id, setShowPlanner] = useState(false);
 function Recipes() {
 
   const [recipes, setRecipes] = useState([])
-  const [showPlanner, setShowPlanner] = useState(false);
+  const [selectedRecipe, setSelectedRecipe] = useState(false);
 
   useEffect(() => {
-
     getRecipes()
   }, [])
 
   async function getRecipes() {
     const result = await getAllRecipes()
     setRecipes(result)
-  }
-
-  async function handleAddToPlanner(selectedRecipe) {
-    // console.log(selectedRecipe)
-    await redirect (<AddRecipeMenuPlanner recipe={selectedRecipe} /*id={selectedRecipe.id} name={selectedRecipe.name} img={selectedRecipe.img}*/ />)
   }
 
   function displayRecipes() {
@@ -50,10 +44,7 @@ function Recipes() {
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button variant="contained" onClick={() => { handleAddToPlanner(r); }}
-                component={RouterLink} to={`add`} sx={{ backgroundColor: "black", left: "50px" }}>
-                + Add To Planner
-              </Button>
+              <AddMenuPlannerButton selectedRecipe={r}/>
             </CardActions>
           </Card>
         </Grid>
@@ -68,7 +59,7 @@ function Recipes() {
           {displayRecipes()}
         </Grid>
       </div>
-      {showPlanner && <AddRecipeMenuPlanner selectedDay={selectedDay} setShowPlanner={setShowPlanner} />}
+      {/* {showPlanner && <AddRecipeMenuPlanner selectedDay={selectedDay} setShowPlanner={setShowPlanner} />} */}
     </>
   )
 }

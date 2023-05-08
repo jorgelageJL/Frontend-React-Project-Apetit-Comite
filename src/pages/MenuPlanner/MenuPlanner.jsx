@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -28,6 +28,7 @@ function MenuPlanner() {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const [addMenuPlanner, setAddMenuPlanner] = useState({})
 
     const handleClick = () => {
       alert(days[selectedIndex])
@@ -50,6 +51,10 @@ function MenuPlanner() {
 
       setOpen(false);
     };
+
+    useEffect(() => {
+      
+    })
 
     return (
       <React.Fragment>
