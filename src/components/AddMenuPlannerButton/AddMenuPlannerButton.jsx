@@ -43,10 +43,13 @@ function AddMenuPlannerButton({ selectedRecipe }) {
     setOpen(false);
   };
 
-  const handleAddRecipeClick = async() => {
-    // const query = await addMenuPlanner(selectedRecipe.id, days[selectedIndex]);
-    // setOpen(false);
-    alert('query');
+  const handleAddRecipeClick = () => {
+    const query = addMenuPlanner(selectedRecipe.id, days[selectedIndex]);
+    if (query)
+      alert(`You added ${selectedRecipe.name} for ${days[selectedIndex]}`);
+    else
+      alert(`This Recipe already exist in your MenuPlanner`);
+    setOpen(false);
     // navigate("/home/menuplanner");
   };
 
