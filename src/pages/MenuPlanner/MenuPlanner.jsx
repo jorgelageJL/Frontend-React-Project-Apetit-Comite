@@ -18,7 +18,7 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
-
+import { getMenuPlanner } from '../../Services/menuPlannerServices';
 
 function MenuPlanner() {
 
@@ -28,7 +28,7 @@ function MenuPlanner() {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
-    const [addMenuPlanner, setAddMenuPlanner] = useState({})
+    const [MyMenuPlanner, setMyMenuPlanner] = useState([])
 
     const handleClick = () => {
       alert(days[selectedIndex])
@@ -52,10 +52,15 @@ function MenuPlanner() {
       setOpen(false);
     };
 
-    useEffect(() => {
-      
-    })
+    async function handleMenuPlanner() {
+      const result = await getMenuPlanner()
+      setMyMenuPlanner(result)
+    }
 
+    useEffect(() => {
+      handleMenuPlanner();
+    }, []);
+    console.log(MyMenuPlanner);
     return (
       <React.Fragment>
         <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
@@ -134,6 +139,7 @@ function MenuPlanner() {
               </Box>
               <CardMedia
                 sx={{ height: 130, width: 140, flexShrink: 0, marginTop: "10px", display: "flex" }}
+                // { MyMenuPlanner.map()}
                 image="https://upload.wikimedia.org/wikipedia/commons/9/96/Lagarto_ocelado_Sierra_Sur_Ja%C3%A9n_2019_24J_01.jpg"
                 title="green iguana"
               />
