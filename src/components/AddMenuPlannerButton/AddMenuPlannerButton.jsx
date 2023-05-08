@@ -9,6 +9,7 @@ import Popper from "@mui/material/Popper";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { addMenuPlanner } from "../../Services/menuPlannerServices";
 
 function AddMenuPlannerButton({ selectedRecipe }) {
@@ -24,6 +25,7 @@ function AddMenuPlannerButton({ selectedRecipe }) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const navigate = useNavigate();
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -42,12 +44,10 @@ function AddMenuPlannerButton({ selectedRecipe }) {
   };
 
   const handleAddRecipeClick = async() => {
-    console.info(
-      `You clicked Add Recipe for ${selectedRecipe.name} on ${days[selectedIndex]}`
-    );
-    addMenuPlanner(selectedRecipe.id, days[selectedIndex]);
-    setOpen(false);
-    redirect("/home/menuplanner");
+    // const query = await addMenuPlanner(selectedRecipe.id, days[selectedIndex]);
+    // setOpen(false);
+    alert('query');
+    // navigate("/home/menuplanner");
   };
 
   return (
