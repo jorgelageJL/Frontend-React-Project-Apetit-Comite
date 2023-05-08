@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import ButtonGroup from '@mui/material/ButtonGroup';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -14,6 +14,7 @@ function AddRecipeMenuPlanner() {
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const [recipe, setRecipe] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
+  const [id, setId] = useState([])
 
   const handleClose = () => {
     props.setShowPlanner(false);
@@ -50,70 +51,75 @@ function AddRecipeMenuPlanner() {
       setOpen(false);
     };
 
-    return (
+    useEffect((recipe) => {
+      console.log(recipe)
+      // alert(recipe)
+    }, [])
 
-            <React.Fragment>
-              <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-                <Button onClick={handleToggle}>{days[selectedIndex]}</Button>
-                <Button
-                  size="small"
-                  aria-controls={open ? 'split-button-menu' : undefined}
-                  aria-expanded={open ? 'true' : undefined}
-                  aria-label="add recipe"
-                  onClick={handleAddRecipeClick}
-                  sx={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
-                >
-                  Add Recipe
-                </Button>
-                <Button
-                  size="small"
-                  aria-controls={open ? 'split-button-menu' : undefined}
-                  aria-expanded={open ? 'true' : undefined}
-                  onClick={handleToggle}
-                  sx={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
-                >
-                  <ArrowDropDownIcon />
-                </Button>
-              </ButtonGroup>
-              <Popper
-                sx={{
-                  zIndex: 1,
-                }}
-                open={open}
-                anchorEl={anchorRef.current}
-                role={undefined}
-                transition
-                disablePortal
-              >
-                {({ TransitionProps, placement }) => (
-                  <Grow
-                    {...TransitionProps}
-                    style={{
-                      transformOrigin:
-                        placement === 'bottom' ? 'center top' : 'center bottom',
-                    }}
-                  >
-                    <Paper>
-                      <ClickAwayListener onClickAway={handleClose}>
-                        <MenuList id="split-button-menu" autoFocusItem>
-                          {days.map((option, index) => (
-                            <MenuItem
-                              key={option}
-                              selected={index === selectedIndex}
-                              onClick={(event) => handleMenuItemClick(event, index)}
-                            >
-                              {option}
-                            </MenuItem>
-                          ))}
-                          <MenuItem onClick={handleAddRecipeClick}>Add Recipe</MenuItem>
-                        </MenuList>
-                      </ClickAwayListener>
-                    </Paper>
-                  </Grow>
-                )}
-              </Popper>
-            </React.Fragment>
-          );
+    return (
+      <React.Fragment>
+        
+        <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
+          <Button onClick={handleToggle}>Add Recipe</Button>
+          <Button
+            size="small"
+            aria-controls={open ? 'split-button-menu' : undefined}
+            aria-expanded={open ? 'true' : undefined}
+            aria-label="add recipe"
+            onClick={handleAddRecipeClick}
+            sx={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
+          >
+            {days[selectedIndex]}
+          </Button>
+          <Button
+            size="small"
+            aria-controls={open ? 'split-button-menu' : undefined}
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleToggle}
+            sx={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
+          >
+            <ArrowDropDownIcon />
+          </Button>
+        </ButtonGroup>
+        <Popper
+          sx={{
+            zIndex: 1,
+          }}
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === 'bottom' ? 'center top' : 'center bottom',
+              }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList id="split-button-menu" autoFocusItem>
+                    {days.map((option, index) => (
+                      <MenuItem
+                        key={option}
+                        selected={index === selectedIndex}
+                        onClick={(event) => handleMenuItemClick(event, index)}
+                      >
+                        {option}
+                      </MenuItem>
+                    ))}
+                    <MenuItem onClick={handleAddRecipeClick}>Add Recipe</MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </React.Fragment>
+    );
   }
 
   return <React.Fragment>{splitButton()}</React.Fragment>;

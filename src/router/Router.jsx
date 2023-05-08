@@ -66,6 +66,10 @@ const router = createBrowserRouter([
         element: <Search/>
       },
       {
+        path:"/home/search/:id",
+        element: <Recipe/>
+      },
+      {
         path:"/home/me",
         element: <Profile/>
       },

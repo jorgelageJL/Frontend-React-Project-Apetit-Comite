@@ -5,29 +5,35 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
 import { getAllRecipes } from '../../Services/recipeServices';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, redirect } from 'react-router-dom';
+import AddRecipeMenuPlanner from '../AddRecipeMenuPlanner/AddRecipeMenuPlanner';
 
-export default function Recipes() {
+// const [id, setShowPlanner] = useState(false);
+function Recipes() {
 
   const [recipes, setRecipes] = useState([])
-  const [selectedDay, setSelectedDay] = useState('');
   const [showPlanner, setShowPlanner] = useState(false);
 
-useEffect(() => {
+  useEffect(() => {
 
-  getRecipes()
-}, [])
+    getRecipes()
+  }, [])
 
- async function getRecipes () {
+  async function getRecipes() {
     const result = await getAllRecipes()
     setRecipes(result)
+  }
+
+  async function handleAddToPlanner(selectedRecipe) {
+    // console.log(selectedRecipe)
+    await redirect (<AddRecipeMenuPlanner recipe={selectedRecipe} /*id={selectedRecipe.id} name={selectedRecipe.name} img={selectedRecipe.img}*/ />)
   }
 
   function displayRecipes() {
     return recipes.map(r => {
       return (
         <Grid item xs={12} sm={6} md={4} xl={3}>
-          <Card sx={{ maxWidth: "345px", padding: "10px", margin: "10px", flexDirection: "row", }}>
+          <Card key={r.id} sx={{ maxWidth: "345px", padding: "10px", margin: "10px", flexDirection: "row", }}>
             <CardActionArea component={RouterLink} to={`${r.id}`}>
               <CardMedia
                 component="img"
@@ -44,7 +50,8 @@ useEffect(() => {
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button variant="contained" onClick={() => {setSelectedDay(''); setShowPlanner(true);}} component={RouterLink} to={`add`} sx={{ backgroundColor: "black", left: "50px" }}>
+              <Button variant="contained" onClick={() => { handleAddToPlanner(r); }}
+                component={RouterLink} to={`add`} sx={{ backgroundColor: "black", left: "50px" }}>
                 + Add To Planner
               </Button>
             </CardActions>
@@ -66,3 +73,4 @@ useEffect(() => {
   )
 }
 
+export default Recipes
