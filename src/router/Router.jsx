@@ -3,7 +3,7 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 import Root from "../layout/Root";
 import Init from "../pages/Init/Init";
 import Login from "../pages/Login/Login";
-import SignUp from "../pages/signUp/signUp";
+import SignUp from "../pages/SignUp/SignUp";
 import Home from "../pages/Home/Home";
 import Recipes from "../pages/Recipes/Recipes";
 import MenuPlanner from "../pages/MenuPlanner/MenuPlanner";
