@@ -1,24 +1,21 @@
-import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import HeaderLogo from "../../assets/HEADER_LOGO.svg"
-// import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { Link } from 'react-router-dom';
-
-const pages = ["HOME", "ALL RECIPES", "MEAL PLANNER", "BY DIET"];
+import React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import MenuItem from "@mui/material/MenuItem";
+import HeaderLogo from "../../assets/HEADER_LOGO.svg";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginHeader() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -32,9 +29,21 @@ export default function LoginHeader() {
     setAnchorElUser(null);
   };
 
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  const register = [
+    {
+      title: "SignUp",
+      fun: () => {
+        navigate("/signUp");
+      },
+    },
+    {
+      title: "Login",
+      fun: () => {
+        navigate("/login");
+      },
+    },
+  ];
+
   return (
     <AppBar position="static" sx={{ background: "#ffeb3b", color: "black" }}>
       <Container maxWidth="x2">
@@ -83,9 +92,9 @@ export default function LoginHeader() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {register.map((page) => (
+                <MenuItem key={page} onClick={page.fun}>
+                  <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -110,7 +119,7 @@ export default function LoginHeader() {
             }}
           ></Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+            {/* {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
@@ -118,18 +127,30 @@ export default function LoginHeader() {
               >
                 {page}
               </Button>
-            ))}
+            ))} */}
           </Box>
 
           <Button>
-            <Link to="/signUp" style={{ textDecoration: 'none', color: "black" }}>
-              <p> <b>SIGN UP &nbsp;  </b> </p>
+            <Link
+              to="/signUp"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <p>
+                {" "}
+                <b>SIGN UP &nbsp; </b>{" "}
+              </p>
             </Link>
           </Button>
           <b style={{ padding: "10px", marginRight: "5px" }}> | </b>
           <Button>
-            <Link to="/login" style={{ textDecoration: 'none', color: "black" }}>
-              <p > <b>LOG IN &nbsp;  </b> </p>
+            <Link
+              to="/login"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <p>
+                {" "}
+                <b>LOG IN &nbsp; </b>{" "}
+              </p>
             </Link>
           </Button>
           <Box sx={{ flexGrow: 0 }}>
@@ -148,12 +169,10 @@ export default function LoginHeader() {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
-            >
-            </Menu>
+            ></Menu>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
-
   );
 }
