@@ -64,6 +64,7 @@ export default function SignUp() {
               startAdornment: <TextFields />,
             }}
             onChange={(e) => setUsername(e.target.value)}
+            onKeyDown={(e) => {if (e.key === 'Enter') goToRegister();}}
           ></TextField>
 
           <TextField
@@ -78,6 +79,7 @@ export default function SignUp() {
               startAdornment: <TextFields />,
             }}
             onChange={(e) => setFullname(e.target.value)}
+            onKeyDown={(e) => {if (e.key === 'Enter') goToRegister();}}
           ></TextField>
 
           <TextField
@@ -89,6 +91,7 @@ export default function SignUp() {
             margin="dense"
             autoComplete="on"
             onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={(e) => {if (e.key === 'Enter') goToRegister();}}
             InputProps={{
               startAdornment: <Email />,
             }}
@@ -101,6 +104,7 @@ export default function SignUp() {
             fullWidth={true}
             margin="dense"
             onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={(e) => {if (e.key === 'Enter') goToRegister();}}
             InputProps={{
               startAdornment: <Lock />,
               endAdornment: (
@@ -120,6 +124,7 @@ export default function SignUp() {
             margin="dense"
             autoComplete="on"
             onChange={(e) => setAddress(e.target.value)}
+            onKeyDown={(e) => {if (e.key === 'Enter') goToRegister();}}
             InputProps={{
               startAdornment: <Directions />,
             }}
@@ -134,6 +139,7 @@ export default function SignUp() {
             margin="dense"
             autoComplete="on"
             onChange={(e) => setPhone(e.target.value)}
+            onKeyDown={(e) => {if (e.key === 'Enter') goToRegister();}}
             InputProps={{
               startAdornment: <Phone />,
             }}
@@ -148,6 +154,7 @@ export default function SignUp() {
             margin="dense"
             autoComplete="on"
             onChange={(e) => setCategory(e.target.value)}
+            onKeyDown={(e) => {if (e.key === 'Enter') goToRegister();}}
             InputProps={{
               startAdornment: <FoodBank />,
             }}
