@@ -36,18 +36,6 @@ function MenuPlanner() {
   //const [recipes, setRecipes] = useState([]);
   const [recipeMenuPlanner, setRecipeMenuPlanner] = useState([]);
 
-  async function handleMenuPlanner() {
-    const result = await getMenuPlanner();
-    //console.log(result.recipes)
-    // const data = result.map((r) => {
-    //   return r.menu_planners;
-    // });
-
-
-    setMyMenuPlanner(result);
-    //console.log(result)
-  }
-
   // async function handleRecipesMenuPlanner() {
   //   const result = await getMenuPlanner();
   //   setUserRecipe(result);
@@ -55,16 +43,18 @@ function MenuPlanner() {
   // }
 
   async function getMyRecipe() {
-    const menuPlannerRecipe = []
-    menuPlannerRecipe.push(myMenuPlanner.map(async (mp) => {
-      const recipe = await getRecipe(mp.recipeId);
-      //console.log(recipe)
-      return {
-        date: mp.date,
-        name: recipe.name,
-        img: recipe.img
-      };
-    }));
+    const menuPlannerRecipe = [];
+    menuPlannerRecipe.push(
+      myMenuPlanner.map(async (mp) => {
+        const recipe = await getRecipe(mp.recipeId);
+        //console.log(recipe)
+        return {
+          date: mp.date,
+          name: recipe.name,
+          img: recipe.img,
+        };
+      })
+    );
     setRecipeMenuPlanner(menuPlannerRecipe);
     //console.log(menuPlannerRecipe);
   }
@@ -80,6 +70,17 @@ function MenuPlanner() {
   // }
 
   useEffect(() => {
+    async function handleMenuPlanner() {
+      const result = await getMenuPlanner();
+      //console.log(result.recipes)
+      // const data = result.map((r) => {
+      //   return r.menu_planners;
+      // });
+
+      setMyMenuPlanner(result);
+      //console.log(result)
+    }
+
     handleMenuPlanner();
     //getMyRecipe();
     //console.log(recipeMenuPlanner);
