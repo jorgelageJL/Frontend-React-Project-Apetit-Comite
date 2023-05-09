@@ -54,6 +54,7 @@ function MenuPlanner() {
 
     async function handleMenuPlanner() {
       const result = await getMenuPlanner();
+      console.log(result)
       setMyMenuPlanner(result);
     }
 
@@ -69,8 +70,8 @@ function MenuPlanner() {
 
     useEffect(() => {
       handleMenuPlanner();
-      handleRecipes();
-      console.log(getRecipes);
+      //handleRecipes();
+      //console.log(getRecipes);
     }, []);
     // console.log(getRecipes);
 

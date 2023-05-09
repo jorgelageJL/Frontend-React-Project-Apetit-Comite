@@ -7,7 +7,7 @@ export async function getMenuPlanner() {
             token: localStorage.getItem('token')
         }
     })
-    console.log(result.data)
+
     return result.data
 }
 
