@@ -23,3 +23,13 @@ export async function addMenuPlanner(id, date) {
         })
     return result.data
 }
+
+export async function getRecipeSpecial() {
+    const result = await api.get(`user/me/userRecipe`,
+        {
+            headers: {
+                token: localStorage.getItem('token')
+            }
+        })
+    return result.data
+}
