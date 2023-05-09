@@ -8,8 +8,6 @@ import Typography from '@mui/material/Typography';
 import { Box, Grid } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
 import EditIcon from '@mui/icons-material/Edit';
-
-
 import ButtonGroup from '@mui/material/ButtonGroup';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
@@ -19,6 +17,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import { getMenuPlanner } from '../../Services/menuPlannerServices';
+import { getRecipe } from '../../Services/recipeServices';
 
 function MenuPlanner() {
 
@@ -28,10 +27,11 @@ function MenuPlanner() {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
-    const [MyMenuPlanner, setMyMenuPlanner] = useState([])
+    const [MyMenuPlanner, setMyMenuPlanner] = useState([]);
+    const [getRecipes, setRecipes] = useState([]);
 
     const handleClick = () => {
-      alert(days[selectedIndex])
+      alert(days[selectedIndex]);
       console.info(`You clicked ${days[selectedIndex]}`);
     };
 
@@ -53,22 +53,39 @@ function MenuPlanner() {
     };
 
     async function handleMenuPlanner() {
-      const result = await getMenuPlanner()
-      setMyMenuPlanner(result)
+      const result = await getMenuPlanner();
+      setMyMenuPlanner(result);
+    }
+
+    async function handleRecipes() {
+      const result = [];
+      await result.push(
+        MyMenuPlanner.map((r) => {
+          getRecipe(r.recipeId);
+        })
+      );
+      setRecipes(result);
     }
 
     useEffect(() => {
       handleMenuPlanner();
+      handleRecipes();
+      console.log(getRecipes);
     }, []);
-    console.log(MyMenuPlanner);
+    // console.log(getRecipes);
+
     return (
       <React.Fragment>
-        <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
+        <ButtonGroup
+          variant="contained"
+          ref={anchorRef}
+          aria-label="split button"
+        >
           <Button onClick={handleClick}>Add random recipe!</Button>
           <Button
             size="small"
-            aria-controls={open ? 'split-button-menu' : undefined}
-            aria-expanded={open ? 'true' : undefined}
+            aria-controls={open ? "split-button-menu" : undefined}
+            aria-expanded={open ? "true" : undefined}
             aria-label="select merge strategy"
             aria-haspopup="menu"
             onClick={handleToggle}
@@ -92,14 +109,11 @@ function MenuPlanner() {
               {...TransitionProps}
               style={{
                 transformOrigin:
-                  placement === 'bottom' ? 'center top' : 'center bottom',
+                  placement === "bottom" ? "center top" : "center bottom",
               }}
             >
-
               <Paper>
-
                 <ClickAwayListener onClickAway={handleClose}>
-
                   <MenuList id="split-button-menu" autoFocusItem>
                     {days.map((option, index) => (
                       <MenuItem
@@ -113,11 +127,9 @@ function MenuPlanner() {
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
-
             </Grow>
           )}
         </Popper>
-
       </React.Fragment>
     );
   }
