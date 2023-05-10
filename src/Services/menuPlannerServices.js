@@ -32,3 +32,13 @@ export async function getRecipeSpecial() {
         })
     return result.data
 }
+
+export async function deleteRecipeMenuPlanner(id) {  
+    const result = await api.delete(`user/me/menuPlanner/${id}`,
+        {
+            headers: {
+                token: localStorage.getItem('token')
+            }
+        })
+    return result.data
+}

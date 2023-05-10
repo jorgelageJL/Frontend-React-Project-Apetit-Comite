@@ -17,9 +17,11 @@ import Popper from "@mui/material/Popper";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import { getMenuPlanner } from "../../Services/menuPlannerServices";
+import { deleteRecipeMenuPlanner } from "../../Services/menuPlannerServices";
 import { getRecipe } from "../../Services/recipeServices";
 import Recipes from "../Recipes/Recipes";
 import { getRecipeSpecial } from "../../Services/menuPlannerServices";
+import { useParams } from "react-router-dom";
 
 function MenuPlanner() {
   // const days = [
@@ -33,9 +35,8 @@ function MenuPlanner() {
   // ];
 
   const [myMenuPlanner, setMyMenuPlanner] = useState([]);
-  const [recipeMenuPlanner, setRecipeMenuPlanner] = useState([]);
 
-
+  const {id} = useParams()
 
   async function handleMenuPlanner() {
     const result = await getMenuPlanner()
@@ -43,49 +44,18 @@ function MenuPlanner() {
     setMyMenuPlanner(result);
   }
 
+
+    const deleteOneRecipeMenuPlanner = async (id) => {
+      console.log(id)
+      await  deleteRecipeMenuPlanner(id)
+    };
+
+
   useEffect(() => {
     handleMenuPlanner();
-  }, []);
+  }, [myMenuPlanner]);
 
 
-
-
-
-
-/*
-  useEffect(() => {
-    handleMenuPlanner();
-    getMyRecipe();
-  }, []);
-
-
-  
-   async function handleMenuPlanner() {
-      const result = await getMenuPlanner();
-      console.log(result.recipes)
-       const data = result.map((r) => {
-         return r.menu_planners;
-       })
-
-   async function getMyRecipe() {
-    const menuPlannerRecipe = [];
-    menuPlannerRecipe.push(
-      myMenuPlanner.map(async (mp) => {
-        const recipe = await getRecipe(mp.recipeId)
-        //console.log(recipe)
-        return {
-          date: mp.date,
-          name: recipe.name,
-          img: recipe.img,
-        };
-      })
-    );
-    setRecipeMenuPlanner(menuPlannerRecipe);
-
-  }
- useEffect(() => {
-     getMyRecipe();
-   }, []);*/
 
   return (
     <>
@@ -158,7 +128,7 @@ function MenuPlanner() {
                       marginBottom: "5px",
                     }}
                   >
-                    RECIPE NAME
+                    {recipe.name}
                   </Typography>
                   <Typography
                     variant="body2"
@@ -184,6 +154,7 @@ function MenuPlanner() {
                       justifyContent: "flex-end",
                       marginLeft: "0vw",
                     }}
+                    onClick={(e) => deleteOneRecipeMenuPlanner(recipe.id)}
                   >
                     <CancelIcon />
                   </Button>
