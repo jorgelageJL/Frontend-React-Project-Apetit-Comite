@@ -30,7 +30,7 @@ const Init = () => {
               lg:"10"
             } 
             }}>
-          <Grid  xs={12} md={12} lg={8} 
+          <Grid  item={true} xs={12} md={12} lg={8} 
           sx={{fontSize: {
             xs: "150%", 
             s:"250%", 
@@ -68,7 +68,7 @@ const Init = () => {
         </Button>
     </div>
         </Grid>
-        <Grid xs={12} md={12} lg={4} sx={{marginTop:{md:"10%", lg:"30%"} }} >
+        <Grid item={true} xs={12} md={12} lg={4} sx={{marginTop:{md:"10%", lg:"30%"} }} >
         <div className="logoContainer" style={{display:"flex", justifyContent:"center"}} >
          <img className="logo" src={logo} style={{
             position:"relative",
@@ -78,7 +78,7 @@ const Init = () => {
         </Grid>
         </Grid>
       </div>
-      <Grid items xs={12} md={12} lg={3} sx={{
+      <Grid item={true} xs={12} md={12} lg={3} sx={{
         marginLeft: {lg:"62%"}, 
         marginBottom:{lg:"50px"}, 
         fontSize: {xs:"120%",s:"120%", md:"160%", lg:"160%"},

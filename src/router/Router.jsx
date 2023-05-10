@@ -1,5 +1,5 @@
-import { Navigate, createBrowserRouter } from "react-router-dom";
-
+import { Navigate, createBrowserRouter, redirect } from "react-router-dom";
+import { getProfile } from "../Services/userServices";
 import Root from "../layout/Root";
 import Init from "../pages/Init/Init";
 import Login from "../pages/Login/Login";
@@ -13,6 +13,7 @@ import AddRecipeMenuPlanner from "../pages/AddRecipeMenuPlanner/AddRecipeMenuPla
 import Profile from "../pages/Profile/Profile";
 // import LoginHeader from "../components/LoginHeader/LoginHeader";
 import RecipesAdmin from "../pages/RecipesAdmin/RecipesAdmin";
+import AddRecipeAdmin from "../pages/AddRecipeAdmin/AddRecipeAdmin";
 
 const router = createBrowserRouter([
   {
@@ -75,8 +76,30 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "/home/recipes/admin",
-        element: <RecipesAdmin/>
+        path:"/home/recipes/admin",
+        element: <RecipesAdmin />,
+        loader: async () => {
+          const result = await getProfile()
+          console.log(result)
+            if (result.role !== "admin") {
+              return redirect("/home")
+            } else {
+              return null;
+          }
+        },
+      },
+      {
+        path:"/home/recipes/admin/add",
+        element: <AddRecipeAdmin />,
+        loader: async () => {
+          const result = await getProfile()
+          console.log(result)
+            if (result.role !== "admin") {
+              return redirect("/home")
+            } else {
+              return null;
+          }
+        },
       },
     ],
   },

@@ -34,7 +34,7 @@ export default function Profile() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("")
   const [category, setCategory] = useState("");  
 
 
@@ -44,7 +44,6 @@ export default function Profile() {
 
   const getUserData = async() => {
     const result = await getProfile();
-    console.log(result)
     setUserData(result)
 
 }
@@ -163,10 +162,10 @@ export default function Profile() {
             type="phone"
             label="Phone"
             variant="outlined"
-            placeholder={userData.phone}
+            placeholder={userData.phone?.toString()}
             fullWidth={true}
             margin="dense"
-            value={phone}
+            value={phone?.toString()}
             onChange={(e) => setPhone(e.target.value)}
             InputProps={{
               startAdornment: <Phone />,

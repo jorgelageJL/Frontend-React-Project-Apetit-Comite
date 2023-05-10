@@ -54,9 +54,9 @@ function MenuPlanner() {
           <h1>Your Meal Planner</h1>
           <AddMenuPlannerButton  refreshFunction={handleMenuPlanner} />
         </div>
-        {myMenuPlanner.map((recipe) => (
+        {myMenuPlanner.map((recipe, idx) => (
           <Grid
-            key={recipe.id}
+            key={idx}
             item
             xs={12}
             sm={12}

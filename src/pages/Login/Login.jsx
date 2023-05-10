@@ -30,9 +30,10 @@ export default function Login() {
 
   async function onLogin() {
     try {
-      if (email && password) {
+      if (email && password ) {
         const loginResponse = await login({ email, password });
         localStorage.setItem("token", loginResponse.data.token);
+        console.log(loginResponse)
         navigate("/home");
       } else {
         throw new Error();

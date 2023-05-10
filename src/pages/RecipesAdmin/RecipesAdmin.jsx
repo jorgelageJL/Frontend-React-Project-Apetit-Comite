@@ -5,7 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Grid } from "@mui/material";
 import { getAllRecipes } from "../../Services/recipeServices";
-import { Link as RouterLink, redirect } from "react-router-dom";
+import { Link, Link as RouterLink, redirect } from "react-router-dom";
 // import AddRecipeMenuPlanner from '../AddRecipeMenuPlanner/AddRecipeMenuPlanner';
 import AddMenuPlannerButton from "../../components/AddMenuPlannerButton/AddMenuPlannerButton";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
@@ -24,11 +24,11 @@ function RecipesAdmin() {
   }
 
   function displayRecipes() {
-    return recipes.map((r) => {
+    return recipes.map((r,idx) => {
       return (
         <Grid item xs={12} sm={6} md={4} xl={3}>
           <Card
-            key={r.id}
+            key={idx}
             sx={{
               maxWidth: "345px",
               padding: "10px",
@@ -58,15 +58,16 @@ function RecipesAdmin() {
 
   return (
     <>
-            <Button sx={{right:"10px", position: "absolute", border:"solid", borderColor:"black",}}>
-                <AddCircleOutlineIcon/>
-            </Button>
+      <Link to= "/home/recipes/admin/add">
+      <Button sx={{right:"10px", position: "absolute", border:"solid", borderColor:"black",}}>
+        <AddCircleOutlineIcon/>
+      </Button>
+      </Link>
       <div style={{ width: "100%", height: "auto" }}>
         <Grid container sx={{ justifyContent: "start", flexWrap: "wrap" }}>
           {displayRecipes()}
         </Grid>
       </div>
-      {/* {showPlanner && <AddRecipeMenuPlanner selectedDay={selectedDay} setShowPlanner={setShowPlanner} />} */}
     </>
   );
 }

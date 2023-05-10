@@ -23,10 +23,10 @@ function Recipes() {
   }
 
   function displayRecipes() {
-    return recipes.map(r => {
+    return recipes.map((r, idx) => {
       return (
         <Grid item xs={12} sm={6} md={4} xl={3}>
-          <Card key={r.id} sx={{ maxWidth: "345px", padding: "10px", margin: "10px", flexDirection: "row", }}>
+          <Card key={idx} sx={{ maxWidth: "345px", padding: "10px", margin: "10px", flexDirection: "row", }}>
             <CardActionArea component={RouterLink} to={`${r.id}`}>
               <CardMedia
                 component="img"
