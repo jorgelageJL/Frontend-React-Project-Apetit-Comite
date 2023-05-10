@@ -55,3 +55,20 @@ export async function deleteRecipeMenuPlanner(id) {
         })
     return result.data
 }
+
+export async function addOneRecipeAdmin(name, img, description, instruction) {
+    const result = await api.post(`recipe`,
+        {
+            name: name,
+            img: img,
+            description: description,
+            instruction: instruction
+        },
+        {
+            headers: {
+                token: localStorage.getItem('token')
+            }
+        })
+    return result.data
+}
+
