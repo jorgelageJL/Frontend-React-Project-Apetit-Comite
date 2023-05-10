@@ -12,7 +12,6 @@ import AddMenuPlannerButton from '../../components/AddMenuPlannerButton/AddMenuP
 function Recipes() {
 
   const [recipes, setRecipes] = useState([])
-  const [selectedRecipe, setSelectedRecipe] = useState(false);
 
   useEffect(() => {
     getRecipes()

@@ -29,7 +29,6 @@ function Recipe() {
 
     const getIngredientByRecipe = async() => {
         const result = await getRecipeByIngredient(id)
-        console.log(result)
         setIngredientRecipe(result)
     }
 

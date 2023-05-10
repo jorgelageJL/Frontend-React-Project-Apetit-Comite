@@ -8,54 +8,25 @@ import Typography from "@mui/material/Typography";
 import { Box, Grid } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import ClickAwayListener from "@mui/material/ClickAwayListener";
-import Grow from "@mui/material/Grow";
-import Paper from "@mui/material/Paper";
-import Popper from "@mui/material/Popper";
-import MenuItem from "@mui/material/MenuItem";
-import MenuList from "@mui/material/MenuList";
 import { getMenuPlanner } from "../../Services/menuPlannerServices";
 import { deleteRecipeMenuPlanner } from "../../Services/menuPlannerServices";
-import { getRecipe } from "../../Services/recipeServices";
-import Recipes from "../Recipes/Recipes";
-import { getRecipeSpecial } from "../../Services/menuPlannerServices";
-import { useParams } from "react-router-dom";
 
 function MenuPlanner() {
-  // const days = [
-  //   "Monday",
-  //   "Tuesday",
-  //   "Wednesday",
-  //   "Thursday",
-  //   "Friday",
-  //   "Saturday",
-  //   "Sunday",
-  // ];
-
   const [myMenuPlanner, setMyMenuPlanner] = useState([]);
 
-  const {id} = useParams()
-
   async function handleMenuPlanner() {
-    const result = await getMenuPlanner()
-    console.log(result)
+    const result = await getMenuPlanner();
     setMyMenuPlanner(result);
   }
 
-
-    const deleteOneRecipeMenuPlanner = async (id) => {
-      console.log(id)
-      await  deleteRecipeMenuPlanner(id)
-    };
-
+  const deleteOneRecipeMenuPlanner = async (id) => {
+    await deleteRecipeMenuPlanner(id);
+    handleMenuPlanner();
+  };
 
   useEffect(() => {
     handleMenuPlanner();
-  }, [myMenuPlanner]);
-
-
+  }, []);
 
   return (
     <>
