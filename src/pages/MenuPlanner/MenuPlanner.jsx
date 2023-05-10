@@ -52,7 +52,7 @@ function MenuPlanner() {
           }}
         >
           <h1>Your Meal Planner</h1>
-          <AddMenuPlannerButton refreshFunction={handleMenuPlanner} />
+          <AddMenuPlannerButton  refreshFunction={handleMenuPlanner} />
         </div>
         {myMenuPlanner.map((recipe) => (
           <Grid

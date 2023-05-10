@@ -11,10 +11,12 @@ import {
   IconButton,
   TextField,
 } from "@mui/material";
-import { blue } from "@mui/material/colors";
+import { blue, yellow } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../../Services/auth";
 import './SignUp.css'
+import LoginHeader from "../../components/LoginHeader/LoginHeader";
+import Footer from "../../components/Footer/Footer";
 
 export default function SignUp() {
   const [isPassVisible, setIsPassVisible] = useState(false);
@@ -48,7 +50,7 @@ export default function SignUp() {
 
   function render() {
     return (
-      <Card sx={{ width: "90%", backgroundColor: blue[100] }} raised={true}>
+      <Card sx={{ width: "90%", backgroundColor: "#FFFFE0", border:"solid", borderRadius:"10px", maxWidth:"70vw", top:"20px"}} raised={true}>
         <CardHeader title="SignUp"></CardHeader>
 
         <CardContent>
@@ -64,7 +66,9 @@ export default function SignUp() {
               startAdornment: <TextFields />,
             }}
             onChange={(e) => setUsername(e.target.value)}
-            onKeyDown={(e) => {if (e.key === 'Enter') goToRegister();}}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") goToRegister();
+            }}
           ></TextField>
 
           <TextField
@@ -79,7 +83,9 @@ export default function SignUp() {
               startAdornment: <TextFields />,
             }}
             onChange={(e) => setFullname(e.target.value)}
-            onKeyDown={(e) => {if (e.key === 'Enter') goToRegister();}}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") goToRegister();
+            }}
           ></TextField>
 
           <TextField
@@ -91,7 +97,9 @@ export default function SignUp() {
             margin="dense"
             autoComplete="on"
             onChange={(e) => setEmail(e.target.value)}
-            onKeyDown={(e) => {if (e.key === 'Enter') goToRegister();}}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") goToRegister();
+            }}
             InputProps={{
               startAdornment: <Email />,
             }}
@@ -104,7 +112,9 @@ export default function SignUp() {
             fullWidth={true}
             margin="dense"
             onChange={(e) => setPassword(e.target.value)}
-            onKeyDown={(e) => {if (e.key === 'Enter') goToRegister();}}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") goToRegister();
+            }}
             InputProps={{
               startAdornment: <Lock />,
               endAdornment: (
@@ -124,7 +134,9 @@ export default function SignUp() {
             margin="dense"
             autoComplete="on"
             onChange={(e) => setAddress(e.target.value)}
-            onKeyDown={(e) => {if (e.key === 'Enter') goToRegister();}}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") goToRegister();
+            }}
             InputProps={{
               startAdornment: <Directions />,
             }}
@@ -139,7 +151,9 @@ export default function SignUp() {
             margin="dense"
             autoComplete="on"
             onChange={(e) => setPhone(e.target.value)}
-            onKeyDown={(e) => {if (e.key === 'Enter') goToRegister();}}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") goToRegister();
+            }}
             InputProps={{
               startAdornment: <Phone />,
             }}
@@ -154,7 +168,9 @@ export default function SignUp() {
             margin="dense"
             autoComplete="on"
             onChange={(e) => setCategory(e.target.value)}
-            onKeyDown={(e) => {if (e.key === 'Enter') goToRegister();}}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") goToRegister();
+            }}
             InputProps={{
               startAdornment: <FoodBank />,
             }}
@@ -169,13 +185,17 @@ export default function SignUp() {
             size="small"
             color="secondary"
             variant="contained"
-            sx={{ marginRight: "1vw" }}>
+            sx={{ marginRight: "1vw" }}
+          >
             Register
           </Button>
 
           <Button
-            onClick={() => navigate('/login')}
-            size="small" color="primary" variant="contained">
+            onClick={() => navigate("/login")}
+            size="small"
+            color="primary"
+            variant="contained"
+          >
             Login
           </Button>
         </CardActions>
@@ -184,17 +204,21 @@ export default function SignUp() {
   }
 
   return (
-    <Grid
-      container /*item xs={12} md={8} xl={10}*/
-      sx={{
-        height: "85vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignContent: "center",
-      }}
-    >
-      {render()}
-    </Grid>
+    <>
+      <LoginHeader />
+      <Grid
+        container /*item xs={12} md={8} xl={10}*/
+        sx={{
+          height: "85vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+      >
+        {render()}
+      </Grid>
+      <Footer/>
+    </>
   );
 }

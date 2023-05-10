@@ -18,11 +18,6 @@ export default function Search() {
     }
   } 
 
-  const buttonHover = {
-    ":hover": {
-      backgroundColor:"blue"
-    }
-  }
 
   return (
     <>
@@ -47,17 +42,19 @@ export default function Search() {
         />
         <Button
           onClick={() => handleSearch()}
+          variant="contained"
           sx={{
-            height: "5vh",
             backgroundColor: "black",
+            left: "50px",
             color: "white",
             display: "flex",
             top: "10px",
-            buttonHover,
+            height:"5vh"
           }}
         >
           Search
         </Button>
+       
       </Box>
 
       {/* {CARD} */}

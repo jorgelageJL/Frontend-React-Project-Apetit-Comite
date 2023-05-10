@@ -12,11 +12,12 @@ import Recipe from "../pages/Recipe/Recipe";
 import AddRecipeMenuPlanner from "../pages/AddRecipeMenuPlanner/AddRecipeMenuPlanner";
 import Profile from "../pages/Profile/Profile";
 // import LoginHeader from "../components/LoginHeader/LoginHeader";
+import RecipesAdmin from "../pages/RecipesAdmin/RecipesAdmin";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to="/init" replace={true} />
+    element: <Navigate to="/init" replace={true} />,
   },
   {
     path: "/init",
@@ -34,46 +35,50 @@ const router = createBrowserRouter([
     path: "/home",
     element: <Root />,
     loader: () => {
-      if (!localStorage.getItem('token')) {
-        return redirect('/login')
+      if (!localStorage.getItem("token")) {
+        return redirect("/login");
       } else {
-        return null
+        return null;
       }
     },
     children: [
       {
-        path: '/home',
-        element: <Home />
+        path: "/home",
+        element: <Home />,
       },
       {
         path: "/home/recipes",
-        element: <Recipes />
+        element: <Recipes />,
       },
       {
-        path:"/home/recipes/:id",
-        element: <Recipe/>
+        path: "/home/recipes/:id",
+        element: <Recipe />,
       },
       {
-        path:"/home/recipes/add",
-        element: <AddRecipeMenuPlanner/>
+        path: "/home/recipes/add",
+        element: <AddRecipeMenuPlanner />,
       },
       {
         path: "/home/menuplanner",
-        element: <MenuPlanner/>
+        element: <MenuPlanner />,
       },
       {
-        path:"/home/search",
-        element: <Search/>
+        path: "/home/search",
+        element: <Search />,
       },
       {
-        path:"/home/search/:id",
-        element: <Recipe/>
+        path: "/home/search/:id",
+        element: <Recipe />,
       },
       {
-        path:"/home/me",
-        element: <Profile/>
+        path: "/home/me",
+        element: <Profile />,
       },
-    ]
+      {
+        path: "/home/recipes/admin",
+        element: <RecipesAdmin/>
+      },
+    ],
   },
 ]);
 

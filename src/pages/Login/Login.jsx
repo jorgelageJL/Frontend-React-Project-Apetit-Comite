@@ -15,6 +15,8 @@ import { blue } from "@mui/material/colors";
 import { login } from "../../Services/auth";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import LoginHeader from "../../components/LoginHeader/LoginHeader";
+import Footer from "../../components/Footer/Footer";
 
 export default function Login() {
   const [isPassVisible, setIsPassVisible] = useState(false);
@@ -42,7 +44,7 @@ export default function Login() {
 
   function render() {
     return (
-      <Card sx={{ width: "90%", backgroundColor: blue[100] }} raised={true}>
+      <Card sx={{ width: "90%", backgroundColor: "#FFFFE0", border:"solid", borderRadius:"10px" }} raised={true}>
         <CardHeader title="Login"></CardHeader>
 
         <CardContent>
@@ -57,7 +59,9 @@ export default function Login() {
               startAdornment: <Email />,
             }}
             onChange={(e) => setEmail(e.target.value)}
-            onKeyDown={(e) => {if (e.key === 'Enter') onLogin()}}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") onLogin();
+            }}
           ></TextField>
 
           <TextField
@@ -75,7 +79,9 @@ export default function Login() {
               ),
             }}
             onChange={(e) => setPassword(e.target.value)}
-            onKeyDown={(e) => {if (e.key === 'Enter') onLogin()}}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") onLogin();
+            }}
           ></TextField>
         </CardContent>
 
@@ -106,17 +112,21 @@ export default function Login() {
   }
 
   return (
-    <Grid
-      container /*item xs={12} md={8} xl={10}*/
-      sx={{
-        height: "85vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignContent: "center",
-      }}
-    >
-      {render()}
-    </Grid>
+    <>
+      <LoginHeader />
+      <Grid
+        container /*item xs={12} md={8} xl={10}*/
+        sx={{
+          height: "85vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+      >
+        {render()}
+      </Grid>
+      <Footer/>
+    </>
   );
 }
