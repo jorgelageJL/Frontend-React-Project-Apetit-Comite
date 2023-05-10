@@ -33,20 +33,45 @@ function MenuPlanner() {
   // ];
 
   const [myMenuPlanner, setMyMenuPlanner] = useState([]);
-  //const [recipes, setRecipes] = useState([]);
   const [recipeMenuPlanner, setRecipeMenuPlanner] = useState([]);
 
-  // async function handleRecipesMenuPlanner() {
-  //   const result = await getMenuPlanner();
-  //   setUserRecipe(result);
-  //   console.log(result);
-  // }
 
-  async function getMyRecipe() {
+
+  async function handleMenuPlanner() {
+    const result = await getMenuPlanner()
+    console.log(result)
+    setMyMenuPlanner(result);
+  }
+
+  useEffect(() => {
+    handleMenuPlanner();
+  }, []);
+
+
+
+
+
+
+/*
+  useEffect(() => {
+    handleMenuPlanner();
+    getMyRecipe();
+  }, []);
+
+
+  
+   async function handleMenuPlanner() {
+      const result = await getMenuPlanner();
+      console.log(result.recipes)
+       const data = result.map((r) => {
+         return r.menu_planners;
+       })
+
+   async function getMyRecipe() {
     const menuPlannerRecipe = [];
     menuPlannerRecipe.push(
       myMenuPlanner.map(async (mp) => {
-        const recipe = await getRecipe(mp.recipeId);
+        const recipe = await getRecipe(mp.recipeId)
         //console.log(recipe)
         return {
           date: mp.date,
@@ -56,41 +81,11 @@ function MenuPlanner() {
       })
     );
     setRecipeMenuPlanner(menuPlannerRecipe);
-    //console.log(menuPlannerRecipe);
+
   }
-
-  // function recipeByDay () {
-  //   const recipesMenuPlanner = [{
-  //     Monday: {
-  //       img: "",
-  //       text:""
-  //     },
-  //   }
-  //   ]
-  // }
-
-  useEffect(() => {
-    async function handleMenuPlanner() {
-      const result = await getMenuPlanner();
-      //console.log(result.recipes)
-      // const data = result.map((r) => {
-      //   return r.menu_planners;
-      // });
-
-      setMyMenuPlanner(result);
-      //console.log(result)
-    }
-
-    handleMenuPlanner();
-    //getMyRecipe();
-    //console.log(recipeMenuPlanner);
-    //handleRecipesMenuPlanner();
-    console.log(myMenuPlanner);
-    //console.log(recipes)
-    //handleRecipes();
-    //console.log(getRecipes);
-  }, []);
-  // console.log(getRecipes);
+ useEffect(() => {
+     getMyRecipe();
+   }, []);*/
 
   return (
     <>
@@ -105,9 +100,9 @@ function MenuPlanner() {
         >
           <h1>Your Meal Planner</h1>
         </div>
-        {/*recipeMenuPlanner.map((day) => (
+        {myMenuPlanner.map((recipe) => (
           <Grid
-            key={day}
+            key={recipe.id}
             item
             xs={12}
             sm={12}
@@ -138,38 +133,20 @@ function MenuPlanner() {
                     component="div"
                     width="120px"
                   >
-                    {day}
+                    {recipe.menu_planners.date}
                   </Typography>
                 </Box>
-                {/* {myMenuPlanner.map((m) => {
-                  console.log(typeof m.date);
-                  if (m.date === day) {
-                    const oneRecipe = getMyRecipe(m.recipeId);
-                    {
-                      console.log(oneRecipe);
-                    }
-                    return (
-                      <CardMedia
-                        sx={{
-                          height: 130,
-                          width: 140,
-                          flexShrink: 0,
-                          marginTop: "10px",
-                          display: "flex",
-                        }}
-                        image={oneRecipe.img}
-                      />
-                    );
-                  } else {
-                    return (
-                      <CardMedia
-                        component="img"
-                        height="140"
-                        image="https://i0.wp.com/riadenoia.es/wp-content/uploads/2022/09/Lagarto-ocelado-arnal-timon-lepidus-malformacion-en-la-cola-ria-de-noia-cabecera.jpg?fit=640%2C360&ssl=1"
-                      />
-                    );
-                  }
-                })} /}
+
+                <CardMedia
+                  sx={{
+                    height: 130,
+                    width: 140,
+                    flexShrink: 0,
+                    marginTop: "10px",
+                    display: "flex",
+                  }}
+                  image={recipe.img}
+                />
                 <CardContent>
                   <Typography
                     variant="body2"
@@ -225,9 +202,10 @@ function MenuPlanner() {
               </Box>
             </Card>
           </Grid>
-                  ))*/}
+        ))}
       </Grid>
     </>
   );
 }
+
 export default MenuPlanner;
