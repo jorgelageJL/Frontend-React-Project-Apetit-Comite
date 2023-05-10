@@ -23,7 +23,9 @@ export default function Search() {
       <Box component="form"
         sx={{
           '& > :not(style)': { m: 1, width: '25ch' },
-          height: '10%'
+          height: '10%',
+          display:"flex",
+          justifyContent:"center"
         }}
         noValidate
         autoComplete="on">
@@ -36,7 +38,7 @@ export default function Search() {
 
       {/* {CARD} */}
       <Grid item xs={12} sm={6} md={4} xl={3}>
-        <Card sx={{ maxWidth: "345px", padding: "10px", margin: "10px", flexDirection: "row", }}>
+        <Card sx={{ maxWidth: "345px", padding: "10px", margin: "10px", flexDirection: "row", display:"flex",}}>
           <CardActionArea component={RouterLink} to={`${recipe.id}`}>
             <CardMedia component="img" height="140" image={recipe.img} />
             <CardContent>
@@ -50,10 +52,6 @@ export default function Search() {
           </CardActionArea>
 
           <CardActions>
-            <Button variant="contained" onClick={() => { setSelectedDay(''); setShowPlanner(true); }}
-              component={RouterLink} to={`add`} sx={{ backgroundColor: "black", left: "50px" }}>
-              + Add To Planner
-            </Button>
           </CardActions>
         </Card>
       </Grid>

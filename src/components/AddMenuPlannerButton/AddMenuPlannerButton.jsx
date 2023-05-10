@@ -1,5 +1,4 @@
 import React from "react";
-
 import ButtonGroup from "@mui/material/ButtonGroup";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
@@ -9,10 +8,12 @@ import Popper from "@mui/material/Popper";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { addMenuPlanner } from "../../Services/menuPlannerServices";
+import {
+  addMenuPlanner,
+  addRandomRecipe,
+} from "../../Services/menuPlannerServices";
 
-function AddMenuPlannerButton({ selectedRecipe }) {
+function AddMenuPlannerButton({ selectedRecipe, refreshFunction }) {
   const days = [
     "Monday",
     "Tuesday",
@@ -25,7 +26,6 @@ function AddMenuPlannerButton({ selectedRecipe }) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const navigate = useNavigate();
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -43,14 +43,22 @@ function AddMenuPlannerButton({ selectedRecipe }) {
     setOpen(false);
   };
 
-  const handleAddRecipeClick = () => {
-    const query = addMenuPlanner(selectedRecipe.id, days[selectedIndex]);
-    if (query)
+  async function getRandomRecipe(data) {
+    const query = await addRandomRecipe(data);
+    return query;
+  }
+
+  const handleAddRecipeClick = async () => {
+    if (selectedRecipe === undefined) {
+      const query = await getRandomRecipe(days[selectedIndex]);
+      alert(`You added ${query.name} for ${days[selectedIndex]}`);
+      setOpen(false);
+      refreshFunction();
+    } else {
+      const query = addMenuPlanner(selectedRecipe.id, days[selectedIndex]);
       alert(`You added ${selectedRecipe.name} for ${days[selectedIndex]}`);
-    else
-      alert(`This Recipe already exist in your MenuPlanner`);
-    setOpen(false);
-    // navigate("/home/menuplanner");
+      setOpen(false);
+    }
   };
 
   return (

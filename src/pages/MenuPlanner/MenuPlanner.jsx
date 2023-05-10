@@ -10,6 +10,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
 import { getMenuPlanner } from "../../Services/menuPlannerServices";
 import { deleteRecipeMenuPlanner } from "../../Services/menuPlannerServices";
+import AddMenuPlannerButton from "../../components/AddMenuPlannerButton/AddMenuPlannerButton";
 
 function MenuPlanner() {
   const [myMenuPlanner, setMyMenuPlanner] = useState([]);
@@ -40,6 +41,7 @@ function MenuPlanner() {
           }}
         >
           <h1>Your Meal Planner</h1>
+          <AddMenuPlannerButton refreshFunction={handleMenuPlanner} />
         </div>
         {myMenuPlanner.map((recipe) => (
           <Grid
