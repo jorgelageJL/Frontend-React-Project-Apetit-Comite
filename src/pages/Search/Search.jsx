@@ -5,6 +5,7 @@ import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid
 import { useState } from 'react';
 import { getOneRecipeByName } from '../../Services/recipeServices';
 import { Link as RouterLink } from 'react-router-dom';
+import './Search.css'
 
 export default function Search() {
   const [text, setText] = useState('')
@@ -15,30 +16,71 @@ export default function Search() {
       const result = await getOneRecipeByName(text)
       setRecipe(result)
     }
+  } 
+
+  const buttonHover = {
+    ":hover": {
+      backgroundColor:"blue"
+    }
   }
 
   return (
     <>
       {/* {BUSCADOR} */}
-      <Box component="form"
+      <Box
+        component="form"
         sx={{
-          '& > :not(style)': { m: 1, width: '25ch' },
-          height: '10%',
-          display:"flex",
-          justifyContent:"center"
+          "& > :not(style)": { m: 1, width: "25ch" },
+          height: "10%",
         }}
         noValidate
-        autoComplete="on">
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" placeholder='Search Recipe'
-          onChange={(e) => setText(e.currentTarget.value)} sx={{ height: '10vh', lineHeight: '10vh' }} />
-        <Button onClick={() => handleSearch()} sx={{ height: '10vh', lineHeight: '10vh' }}>
+        autoComplete="on"
+        display="flex"
+        justifyContent="center"
+      >
+        <TextField
+          id="outlined-basic"
+          label="Search recipe"
+          variant="outlined"
+          onChange={(e) => setText(e.currentTarget.value)}
+          sx={{ height: "10vh", lineHeight: "10vh" }}
+        />
+        <Button
+          onClick={() => handleSearch()}
+          sx={{
+            height: "5vh",
+            backgroundColor: "black",
+            color: "white",
+            display: "flex",
+            top: "10px",
+            buttonHover,
+          }}
+        >
           Search
         </Button>
       </Box>
 
       {/* {CARD} */}
-      <Grid item xs={12} sm={6} md={4} xl={3}>
-        <Card sx={{ maxWidth: "345px", padding: "10px", margin: "10px", flexDirection: "row", display:"flex",}}>
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        md={4}
+        xl={3}
+        border="solid"
+        alignContent="center"
+        display="flex"
+        justifyContent="center"
+      >
+        <Card
+          sx={{
+            maxWidth: "345px",
+            padding: "10px",
+            margin: "10px",
+            flexDirection: "row",
+            minWidth: "345px",
+          }}
+        >
           <CardActionArea component={RouterLink} to={`${recipe.id}`}>
             <CardMedia component="img" height="140" image={recipe.img} />
             <CardContent>
@@ -51,8 +93,7 @@ export default function Search() {
             </CardContent>
           </CardActionArea>
 
-          <CardActions>
-          </CardActions>
+          <CardActions></CardActions>
         </Card>
       </Grid>
     </>

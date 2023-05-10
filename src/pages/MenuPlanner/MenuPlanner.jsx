@@ -25,8 +25,19 @@ function MenuPlanner() {
     handleMenuPlanner();
   };
 
+  const orderByDays = () => {
+    // console.log(myMenuPlanner);
+    myMenuPlanner.sort((a, b) => {
+      if (a.menu_planners.date < b.menu_planners.date) return -1;
+      else if (a.menu_planners.date > b.menu_planners.date) return 1;
+      return 0;
+    });
+  };
+
+
   useEffect(() => {
     handleMenuPlanner();
+    orderByDays()
   }, []);
 
   return (
