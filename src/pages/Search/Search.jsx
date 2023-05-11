@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import './Search.css'
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
+import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Tooltip, Typography } from '@mui/material';
 import { useState } from 'react';
 import { getAllRecipesByName } from '../../Services/recipeServices';
 import { Link as RouterLink } from 'react-router-dom';
@@ -15,8 +15,8 @@ export default function Search() {
     if (text) {
       const results = await getAllRecipesByName(text)
       setRecipes(results)
-    } 
-  } 
+    }
+  }
 
   return (
     <>
@@ -50,12 +50,12 @@ export default function Search() {
             color: "white",
             display: "flex",
             top: "10px",
-            height:"5vh"
+            height: "5vh"
           }}
         >
           Search
         </Button>
-       
+
       </Box>
 
       {/* {CARDS} */}
@@ -82,7 +82,9 @@ export default function Search() {
               }}
             >
               <CardActionArea component={RouterLink} to={`${recipe.id}`}>
-                <CardMedia component="img" height="140" image={recipe.img} />
+                <Tooltip title="More details">
+                  <CardMedia component="img" height="140" image={recipe.img} />
+                </Tooltip>
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     {recipe.name}
