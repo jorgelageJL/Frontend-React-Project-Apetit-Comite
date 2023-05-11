@@ -36,7 +36,11 @@ function MenuPlanner() {
 
   useEffect(() => {
     handleMenuPlanner();
+<<<<<<< HEAD
     // orderByDays();
+=======
+    orderByDays();
+>>>>>>> 3018c9ec (MVP finished. Thanks god)
   }, []);
 
   return (

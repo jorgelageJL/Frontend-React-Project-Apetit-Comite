@@ -83,8 +83,12 @@ const router = createBrowserRouter([
           const result = await getProfile();
           if (result.role !== "admin") {
             alert("Access denied");
+<<<<<<< HEAD
             return redirect(window.location.pathname.includes("/home/recipes/admin")// ARREGLAR INCLUDE, PERMITE ACCEDER A LOS CHILDREN
               ? "/home" : window.location.pathname);
+=======
+            return redirect("/home");
+>>>>>>> 3018c9ec (MVP finished. Thanks god)
           } else {
             return null;
           }
@@ -93,6 +97,19 @@ const router = createBrowserRouter([
       {
         path: "/home/recipes/admin/add",
         element: <AddRecipeAdmin />,
+<<<<<<< HEAD
+=======
+        loader: async () => {
+          const result = await getProfile();
+          console.log(result);
+          if (result.role !== "admin") {
+            alert("Access denied");
+            return redirect("/home");
+          } else {
+            return null;
+          }
+        },
+>>>>>>> 3018c9ec (MVP finished. Thanks god)
       },
     ],
   },

@@ -14,10 +14,17 @@ function AddRecipeAdmin() {
   async function addRecipe() {
     const result = await addOneRecipeAdmin(name, img, description, instruction);
     alert("New recipe added");
+<<<<<<< HEAD
     reset();
   }
 
   const reset = () => {
+=======
+    refresh();
+  }
+
+  const refresh = () => {
+>>>>>>> 3018c9ec (MVP finished. Thanks god)
     setName("");
     setImg("");
     setDescription("");

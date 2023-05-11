@@ -5,7 +5,11 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Grid, Tooltip } from "@mui/material";
 import { getAllRecipes } from "../../Services/recipeServices";
+<<<<<<< HEAD
 import { Link, Link as RouterLink, useNavigate } from "react-router-dom";
+=======
+import { Link, Link as RouterLink } from "react-router-dom";
+>>>>>>> 3018c9ec (MVP finished. Thanks god)
 import AddMenuPlannerButton from "../../components/AddMenuPlannerButton/AddMenuPlannerButton";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 

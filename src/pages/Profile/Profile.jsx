@@ -3,7 +3,11 @@ import { getProfile } from "../../Services/userServices";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { deleteProfile } from "../../Services/userServices";
 import EditIcon from "@mui/icons-material/Edit";
+<<<<<<< HEAD
 // import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+=======
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+>>>>>>> 3018c9ec (MVP finished. Thanks god)
 import { Link, useNavigate } from "react-router-dom";
 import { updateProfile } from "../../Services/userServices";
 import {
@@ -76,7 +80,11 @@ export default function Profile() {
         // if (newPassword && password === userData.password) {
         //   pwd = newPassword;
         // } else {
+<<<<<<< HEAD
         pwd = password;
+=======
+          pwd = password;
+>>>>>>> 3018c9ec (MVP finished. Thanks god)
         // } 
         // alert(`${newPassword}, ${password}`);
         const updatedProfile = await updateProfile({
@@ -236,7 +244,11 @@ export default function Profile() {
         <Divider />
 
         <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
+<<<<<<< HEAD
           {/* <Button
+=======
+          <Button
+>>>>>>> 3018c9ec (MVP finished. Thanks god)
             onClick={() => navigate("/home")}
             size="small"
             color="secondary"
@@ -245,8 +257,14 @@ export default function Profile() {
             sx={{ marginRight: "1vw" }}
           >
             BACK
+<<<<<<< HEAD
           </Button> */}
 
+=======
+          </Button>
+
+          {/* <Link to="/init"> */}
+>>>>>>> 3018c9ec (MVP finished. Thanks god)
           <Button
             variant="contained"
             color="error"
@@ -259,6 +277,10 @@ export default function Profile() {
           >
             Delete
           </Button>
+<<<<<<< HEAD
+=======
+          {/* </Link> */}
+>>>>>>> 3018c9ec (MVP finished. Thanks god)
           <Link to="/init">
             <Button
               size="small"

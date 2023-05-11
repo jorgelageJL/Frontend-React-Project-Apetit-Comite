@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { useState } from "react";
+=======
+import { useEffect, useState } from "react";
+>>>>>>> 3018c9ec (MVP finished. Thanks god)
 import {
   Directions,
   Email,
