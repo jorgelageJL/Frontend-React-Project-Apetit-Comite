@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import './Search.css'
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getAllRecipesByName } from '../../Services/recipeServices';
 import { Link as RouterLink } from 'react-router-dom';
 import './Search.css'
@@ -10,10 +10,6 @@ import './Search.css'
 export default function Search() {
   const [text, setText] = useState('')
   const [recipes, setRecipes] = useState([])
-
-  useEffect(() => {
-    handleSearch
-  }, [])
 
   async function handleSearch() {
     if (text) {
@@ -39,8 +35,10 @@ export default function Search() {
         <TextField
           id="outlined-basic"
           label="Search recipe"
+          placeholder='Search recipe'
           variant="outlined"
           onChange={(e) => setText(e.currentTarget.value)}
+          onKeyDown={(e) => { if (e.key === "Enter") handleSearch(); }}
           sx={{ height: "10vh", lineHeight: "10vh" }}
         />
         <Button
