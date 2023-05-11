@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import './Search.css'
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { getOneRecipeByName } from '../../Services/recipeServices';
+import { getAllRecipesByName } from '../../Services/recipeServices';
 import { Link as RouterLink } from 'react-router-dom';
 import './Search.css'
 
@@ -17,7 +17,7 @@ export default function Search() {
 
   async function handleSearch() {
     if (text) {
-      const results = await getOneRecipeByName(text)
+      const results = await getAllRecipesByName(text)
       setRecipes(results)
     } 
   } 

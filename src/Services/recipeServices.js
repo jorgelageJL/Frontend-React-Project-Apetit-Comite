@@ -33,8 +33,8 @@ async function getRecipeByIngredient(id) {
     return result.data
 }
 
-async function getOneRecipeByName(name) {
-    const result = await api.post(`/recipe/getOneRecipeByName`,
+async function getAllRecipesByName(name) {
+    const result = await api.post(`/recipe/getAllRecipesByName`,
         {
             name: name,
         },
@@ -50,5 +50,5 @@ export {
     getAllRecipes,
     getRecipe,
     getRecipeByIngredient,
-    getOneRecipeByName
+    getAllRecipesByName
 }
