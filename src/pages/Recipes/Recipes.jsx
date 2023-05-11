@@ -3,10 +3,9 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea, CardActions, Grid } from '@mui/material';
+import { CardActionArea, CardActions, Grid, Tooltip } from '@mui/material';
 import { getAllRecipes } from '../../Services/recipeServices';
-import { Link as RouterLink, redirect } from 'react-router-dom';
-// import AddRecipeMenuPlanner from '../AddRecipeMenuPlanner/AddRecipeMenuPlanner';
+import { Link as RouterLink } from 'react-router-dom';
 import AddMenuPlannerButton from '../../components/AddMenuPlannerButton/AddMenuPlannerButton';
 
 function Recipes() {
@@ -28,11 +27,13 @@ function Recipes() {
         <Grid item xs={12} sm={6} md={4} xl={3}>
           <Card key={idx} sx={{ maxWidth: "345px", padding: "10px", margin: "10px", flexDirection: "row", }}>
             <CardActionArea component={RouterLink} to={`${r.id}`}>
-              <CardMedia
-                component="img"
-                height="140"
-                image={r.img}
-              />
+              <Tooltip title="More details">
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={r.img}
+                />
+              </Tooltip>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {r.name}
@@ -43,7 +44,7 @@ function Recipes() {
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <AddMenuPlannerButton selectedRecipe={r}/>
+              <AddMenuPlannerButton selectedRecipe={r} />
             </CardActions>
           </Card>
         </Grid>
