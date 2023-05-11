@@ -6,10 +6,9 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Grid } from "@mui/material";
 import { getAllRecipes } from "../../Services/recipeServices";
 import { Link, Link as RouterLink, redirect } from "react-router-dom";
-// import AddRecipeMenuPlanner from '../AddRecipeMenuPlanner/AddRecipeMenuPlanner';
-import AddMenuPlannerButton from "../../components/AddMenuPlannerButton/AddMenuPlannerButton";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { BorderColor } from "@mui/icons-material";
+import EditIcon from '@mui/icons-material/Edit';
+import CancelIcon from "@mui/icons-material/Cancel";
 
 function RecipesAdmin() {
   const [recipes, setRecipes] = useState([]);
@@ -26,7 +25,7 @@ function RecipesAdmin() {
   function displayRecipes() {
     return recipes.map((r,idx) => {
       return (
-        <Grid item xs={12} sm={6} md={4} xl={3}>
+        <Grid item xs={12} sm={6} md={4} xl={3} key={r.id}>
           <Card
             key={idx}
             sx={{
@@ -36,7 +35,7 @@ function RecipesAdmin() {
               flexDirection: "row",
             }}
           >
-            <CardActionArea component={RouterLink} to={`${r.id}`}>
+            <CardActionArea component={RouterLink} to={`/home/recipes/${r.id}`}>
               <CardMedia component="img" height="140" image={r.img} />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
@@ -47,8 +46,15 @@ function RecipesAdmin() {
                 </Typography>
               </CardContent>
             </CardActionArea>
-            <CardActions>
-              <AddMenuPlannerButton selectedRecipe={r} />
+            <CardActions sx={{justifyContent: "space-between"}}>
+              <Link to={`${r.id}`}>
+              <Button>
+                <EditIcon sx={{color:"black"}}/>
+              </Button>
+              </Link>
+              <Button>
+                <CancelIcon sx={{color:"black"}}/>
+              </Button>
             </CardActions>
           </Card>
         </Grid>
@@ -59,7 +65,7 @@ function RecipesAdmin() {
   return (
     <>
       <Link to= "/home/recipes/admin/add">
-      <Button sx={{right:"10px", position: "absolute", border:"solid", borderColor:"black",}}>
+      <Button sx={{right:"10px", position: "absolute", border:"solid", borderColor:"black", borderRadius:"100px", }}>
         <AddCircleOutlineIcon/>
       </Button>
       </Link>

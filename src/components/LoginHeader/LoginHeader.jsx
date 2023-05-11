@@ -92,8 +92,8 @@ export default function LoginHeader() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {register.map((page) => (
-                <MenuItem key={page} onClick={page.fun}>
+              {register.map((page, idx) => (
+                <MenuItem key={idx} onClick={page.fun}>
                   <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}

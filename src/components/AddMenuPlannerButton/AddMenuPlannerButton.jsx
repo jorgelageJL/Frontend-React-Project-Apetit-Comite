@@ -108,7 +108,7 @@ function AddMenuPlannerButton({ selectedRecipe, refreshFunction }) {
                 <MenuList id="split-button-menu" autoFocusItem>
                   {days.map((option, index) => (
                     <MenuItem
-                      key={option}
+                      key={index}
                       selected={index === selectedIndex}
                       onClick={(event) => handleMenuItemClick(event, index)}
                     >

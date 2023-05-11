@@ -11,9 +11,9 @@ import Search from "../pages/Search/Search";
 import Recipe from "../pages/Recipe/Recipe";
 import AddRecipeMenuPlanner from "../pages/AddRecipeMenuPlanner/AddRecipeMenuPlanner";
 import Profile from "../pages/Profile/Profile";
-// import LoginHeader from "../components/LoginHeader/LoginHeader";
 import RecipesAdmin from "../pages/RecipesAdmin/RecipesAdmin";
 import AddRecipeAdmin from "../pages/AddRecipeAdmin/AddRecipeAdmin";
+import EditRecipe from "../pages/EditRecipe/EditRecipe";
 
 const router = createBrowserRouter([
   {
@@ -80,7 +80,6 @@ const router = createBrowserRouter([
         element: <RecipesAdmin />,
         loader: async () => {
           const result = await getProfile()
-          console.log(result)
             if (result.role !== "admin") {
               return redirect("/home")
             } else {
@@ -93,7 +92,6 @@ const router = createBrowserRouter([
         element: <AddRecipeAdmin />,
         loader: async () => {
           const result = await getProfile()
-          console.log(result)
             if (result.role !== "admin") {
               return redirect("/home")
             } else {
@@ -101,6 +99,18 @@ const router = createBrowserRouter([
           }
         },
       },
+      {
+        path:"/home/recipes/admin/:id",
+        element: <EditRecipe />,
+        loader: async () => {
+          const result = await getProfile()
+            if (result.role !== "admin") {
+              return redirect("/home")
+            } else {
+              return null;
+          }
+      },
+    }
     ],
   },
 ]);

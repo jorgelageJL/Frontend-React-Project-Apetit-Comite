@@ -127,8 +127,8 @@ function Header() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={page.fun}>
+              {pages.map((page, idx) => (
+                <MenuItem key={idx} onClick={page.fun}>
                   <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
@@ -154,9 +154,9 @@ function Header() {
             }}
           ></Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+            {pages.map((page, idx) => (
               <Button
-                key={page}
+                key={idx}
                 onClick={page.fun}
                 sx={{ my: 2, color: "black", display: "block" }}
               >
@@ -187,8 +187,8 @@ function Header() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={setting.fun}>
+              {settings.map((setting, idx) => (
+                <MenuItem key={idx} onClick={setting.fun}>
                   <Typography textAlign="center" >{setting.title}</Typography>
                 </MenuItem>
               ))}

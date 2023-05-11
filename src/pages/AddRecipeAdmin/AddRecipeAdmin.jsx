@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { useParams } from 'react-router-dom';
 import { getRecipeByIngredient } from '../../Services/recipeServices';
-import { Button, Grid, TextField } from '@mui/material';
+import { Button, CardActions, Grid, TextField } from '@mui/material';
 import { addOneRecipeAdmin } from '../../Services/menuPlannerServices';
 
 function AddRecipeAdmin() {
@@ -68,9 +68,11 @@ function AddRecipeAdmin() {
                       multiline
                       rows={4}
                     />
+                    <CardActions sx={{display:"flex", justifyContent:"center"}}>
                     <Button variant="contained" type="submit" onClick={addRecipe} sx={{backgroundColor:"black"}}>
                       Añadir
                     </Button>
+                    </CardActions>
                 </CardContent>
               </Card>
             </Grid>
