@@ -11,7 +11,6 @@ import {
   IconButton,
   TextField,
 } from "@mui/material";
-import { blue } from "@mui/material/colors";
 import { login } from "../../Services/auth";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
@@ -30,7 +29,7 @@ export default function Login() {
 
   async function onLogin() {
     try {
-      if (email && password ) {
+      if (email && password) {
         const loginResponse = await login({ email, password });
         localStorage.setItem("token", loginResponse.data.token);
         console.log(loginResponse)
@@ -45,7 +44,7 @@ export default function Login() {
 
   function render() {
     return (
-      <Card sx={{ width: "90%", backgroundColor: "#FFFFE0", border:"solid", borderRadius:"10px" }} raised={true}>
+      <Card sx={{ width: "90%", backgroundColor: "#FFFFE0", border: "solid", borderRadius: "10px" }} raised={true}>
         <CardHeader title="Login"></CardHeader>
 
         <CardContent>
@@ -127,7 +126,7 @@ export default function Login() {
       >
         {render()}
       </Grid>
-      <Footer/>
+      <Footer />
     </>
   );
 }

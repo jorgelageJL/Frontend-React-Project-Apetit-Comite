@@ -13,7 +13,7 @@ import AddRecipeMenuPlanner from "../pages/AddRecipeMenuPlanner/AddRecipeMenuPla
 import Profile from "../pages/Profile/Profile";
 import RecipesAdmin from "../pages/RecipesAdmin/RecipesAdmin";
 import AddRecipeAdmin from "../pages/AddRecipeAdmin/AddRecipeAdmin";
-import EditRecipe from "../pages/EditRecipe/EditRecipe";
+<Navigate to="/init" replace={true} />;
 
 const router = createBrowserRouter([
   {
@@ -34,6 +34,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
+    // errorElement: <PageNotFound />,
     element: <Root />,
     loader: () => {
       if (!localStorage.getItem("token")) {
@@ -76,41 +77,23 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path:"/home/recipes/admin",
+        path: "/home/recipes/admin",
         element: <RecipesAdmin />,
         loader: async () => {
-          const result = await getProfile()
-            if (result.role !== "admin") {
-              return redirect("/home")
-            } else {
-              return null;
+          const result = await getProfile();
+          if (result.role !== "admin") {
+            alert("Access denied");
+            return redirect(window.location.pathname.includes("/home/recipes/admin")// ARREGLAR INCLUDE, PERMITE ACCEDER A LOS CHILDREN
+              ? "/home" : window.location.pathname);
+          } else {
+            return null;
           }
         },
       },
       {
-        path:"/home/recipes/admin/add",
+        path: "/home/recipes/admin/add",
         element: <AddRecipeAdmin />,
-        loader: async () => {
-          const result = await getProfile()
-            if (result.role !== "admin") {
-              return redirect("/home")
-            } else {
-              return null;
-          }
-        },
       },
-      {
-        path:"/home/recipes/admin/:id",
-        element: <EditRecipe />,
-        loader: async () => {
-          const result = await getProfile()
-            if (result.role !== "admin") {
-              return redirect("/home")
-            } else {
-              return null;
-          }
-      },
-    }
     ],
   },
 ]);

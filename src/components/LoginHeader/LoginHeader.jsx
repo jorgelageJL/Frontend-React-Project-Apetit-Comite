@@ -92,8 +92,8 @@ export default function LoginHeader() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {register.map((page, idx) => (
-                <MenuItem key={idx} onClick={page.fun}>
+              {register.map((page) => (
+                <MenuItem key={page} onClick={page.fun}>
                   <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
@@ -102,34 +102,8 @@ export default function LoginHeader() {
           <div className="iconContainer">
             <img className="icon" src={HeaderLogo} />
           </div>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          ></Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {/* {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "black", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))} */}
           </Box>
-
           <Button>
             <Link
               to="/signUp"

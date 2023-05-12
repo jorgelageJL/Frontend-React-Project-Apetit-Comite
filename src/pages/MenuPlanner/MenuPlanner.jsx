@@ -10,7 +10,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { getMenuPlanner } from "../../Services/menuPlannerServices";
 import { deleteRecipeMenuPlanner } from "../../Services/menuPlannerServices";
 import AddMenuPlannerButton from "../../components/AddMenuPlannerButton/AddMenuPlannerButton";
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from "react-router-dom";
 
 function MenuPlanner() {
   const [myMenuPlanner, setMyMenuPlanner] = useState([]);
@@ -36,7 +36,7 @@ function MenuPlanner() {
 
   useEffect(() => {
     handleMenuPlanner();
-    orderByDays()
+    // orderByDays();
   }, []);
 
   return (
@@ -90,13 +90,18 @@ function MenuPlanner() {
                 </Box>
 
                 <Tooltip title="More details">
-                  <CardMedia component={RouterLink} to={`/home/recipes/${recipe.id}`} sx={{
-                    height: 130,
-                    width: 140,
-                    flexShrink: 0,
-                    marginTop: "10px",
-                    display: "flex",
-                  }} image={recipe.img} />
+                  <CardMedia
+                    component={RouterLink}
+                    to={`/home/recipes/${recipe.id}`}
+                    sx={{
+                      height: 130,
+                      width: 140,
+                      flexShrink: 0,
+                      marginTop: "10px",
+                      display: "flex",
+                    }}
+                    image={recipe.img}
+                  />
                 </Tooltip>
                 <CardContent>
                   <Typography

@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from 'react'
-
-import { getProfile } from '../../Services/userServices';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { deleteProfile } from '../../Services/userServices';
-import EditIcon from '@mui/icons-material/Edit';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Link } from 'react-router-dom';
-import { updateProfile } from '../../Services/userServices';
-
-
-import { Directions, Email, FoodBank, Lock, Phone, TextFields, Visibility, VisibilityOff } from "@mui/icons-material";
+import React, { useEffect, useState } from "react";
+import { getProfile } from "../../Services/userServices";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { deleteProfile } from "../../Services/userServices";
+import EditIcon from "@mui/icons-material/Edit";
+// import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Link, useNavigate } from "react-router-dom";
+import { updateProfile } from "../../Services/userServices";
+import {
+  Directions,
+  Email,
+  FoodBank,
+  Lock,
+  Phone,
+  TextFields,
+  Visibility,
+  VisibilityOff,
+} from "@mui/icons-material";
 import {
   Button,
   Card,
@@ -23,60 +29,80 @@ import {
 } from "@mui/material";
 import { blue } from "@mui/material/colors";
 
-
-
 export default function Profile() {
-
-  const [userData, setUserData] = useState([])
-  const [profileData, setProfileData] = useState([])
+  const [userData, setUserData] = useState([]);
+  const [isPassVisible, setIsPassVisible] = useState(false);
   const [username, setUsername] = useState("");
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // const [newPassword, setNewPassword] = useState("");
   const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("")
-  const [category, setCategory] = useState("");  
-
+  const [phone, setPhone] = useState("");
+  const [category, setCategory] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getUserData()
-  }, [])
+    getUserData();
+  }, []);
 
-  const getUserData = async() => {
+  const getUserData = async () => {
     const result = await getProfile();
-    setUserData(result)
-
-}
+    setUserData(result);
+    setUsername(result.username);
+    setFullname(result.fullname);
+    setEmail(result.email);
+    setAddress(result.address);
+    setPhone(result.phone);
+    setCategory(result.category);
+  };
 
   const deleteUser = async () => {
     await deleteProfile();
-
-  }
-
-  const handleSaveChanges = async () => {
-    const updatedProfile = await updateProfile({
-      username: username,
-      fullname: fullname,
-      email: email,
-      password: password,
-      address: address,
-      phone: phone,
-      category: category
-    });
-    setUserData(updatedProfile)
-    setProfileData(updatedProfile)
-    console.log(userData)
   };
 
-
-  const [isPassVisible, setIsPassVisible] = useState(false);
-
+  const handleSaveChanges = async () => {
+    try {
+      if (
+        username &&
+        fullname &&
+        email &&
+        password &&
+        address &&
+        phone &&
+        category
+      ) {
+        let pwd;
+        // if (newPassword && password === userData.password) {
+        //   pwd = newPassword;
+        // } else {
+        pwd = password;
+        // } 
+        // alert(`${newPassword}, ${password}`);
+        const updatedProfile = await updateProfile({
+          username: username,
+          fullname: fullname,
+          email: email,
+          password: pwd,
+          address: address,
+          phone: phone,
+          category: category,
+        });
+        localStorage.removeItem("token");
+        setUserData(updatedProfile);
+        // }
+        navigate("/login");
+      } else {
+        throw new Error();
+      }
+    } catch (error) {
+      alert("Any field is invalid");
+    }
+  };
 
   function handleClick() {
     setIsPassVisible(!isPassVisible);
   }
-
-
 
   function render() {
     return (
@@ -88,37 +114,37 @@ export default function Profile() {
             type="text"
             label="username"
             variant="outlined"
-            placeholder={userData.username}
             fullWidth={true}
             margin="dense"
+            placeholder={userData.username}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             InputProps={{
               startAdornment: <TextFields />,
             }}
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
           ></TextField>
 
           <TextField
             type="text"
             label="Full name"
             variant="outlined"
-            placeholder={fullname}
             fullWidth={true}
             margin="dense"
+            placeholder={userData.fullname}
+            value={fullname}
+            onChange={(e) => setFullname(e.target.value)}
             InputProps={{
               startAdornment: <TextFields />,
             }}
-            value={fullname}
-            onChange={(e) => setFullname(e.target.value)}
           ></TextField>
 
           <TextField
             type="email"
             label="Email"
             variant="outlined"
-            placeholder={userData.email}
             fullWidth={true}
             margin="dense"
+            placeholder={userData.email}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             InputProps={{
@@ -127,11 +153,12 @@ export default function Profile() {
           ></TextField>
 
           <TextField
-            label="Password"
+            label="Old Password"
             type={isPassVisible ? "text" : "password"}
             variant="outlined"
             fullWidth={true}
             margin="dense"
+            placeholder={"Old Password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             InputProps={{
@@ -144,13 +171,32 @@ export default function Profile() {
             }}
           ></TextField>
 
+          {/* <TextField
+            label="New Password"
+            type={isPassVisible ? "text" : "password"}
+            variant="outlined"
+            fullWidth={true}
+            margin="dense"
+            placeholder={"New Password"}
+            // value={''}
+            onChange={(e) => setNewPassword(e.target.value)}
+            InputProps={{
+              startAdornment: <Lock />,
+              endAdornment: (
+                <IconButton onClick={handleClick}>
+                  {isPassVisible ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              ),
+            }}
+          ></TextField> */}
+
           <TextField
             type="text"
             label="Address"
             variant="outlined"
-            placeholder={userData.address}
             fullWidth={true}
             margin="dense"
+            placeholder={userData.address}
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             InputProps={{
@@ -162,10 +208,10 @@ export default function Profile() {
             type="phone"
             label="Phone"
             variant="outlined"
-            placeholder={userData.phone?.toString()}
             fullWidth={true}
             margin="dense"
-            value={phone?.toString()}
+            placeholder={userData.phone /*?.toString()*/}
+            value={phone /*?.toString()*/}
             onChange={(e) => setPhone(e.target.value)}
             InputProps={{
               startAdornment: <Phone />,
@@ -176,9 +222,9 @@ export default function Profile() {
             type="text"
             label="Category"
             variant="outlined"
-            placeholder={userData.category}
             fullWidth={true}
             margin="dense"
+            placeholder={userData.category}
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             InputProps={{
@@ -190,34 +236,39 @@ export default function Profile() {
         <Divider />
 
         <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <Link to='/home'> 
-        <Button
-            onClick={() => goToRegister()}
+          {/* <Button
+            onClick={() => navigate("/home")}
             size="small"
             color="secondary"
             variant="contained"
-            startIcon={<ArrowBackIcon/>}
-            sx={{ marginRight: "1vw" }}>
+            startIcon={<ArrowBackIcon />}
+            sx={{ marginRight: "1vw" }}
+          >
             BACK
-          </Button>
-          </Link>
+          </Button> */}
 
-          <Link to ="/init">
           <Button
-        variant="contained"
-        color="error"
-        startIcon={<DeleteIcon/>}
-        sx={{ marginRight: "1vw" }}
-        onClick={deleteUser}
-      >
-        Delete
-      </Button>
-      </Link>
-        <Link to="/init">
-          <Button
-            size="small" onClick={handleSaveChanges} color="primary" variant="contained" startIcon={<EditIcon/>}>
-            EDIT
+            variant="contained"
+            color="error"
+            startIcon={<DeleteIcon />}
+            sx={{ marginRight: "1vw" }}
+            onClick={() => {
+              deleteUser();
+              navigate("/home");
+            }}
+          >
+            Delete
           </Button>
+          <Link to="/init">
+            <Button
+              size="small"
+              onClick={handleSaveChanges}
+              color="primary"
+              variant="contained"
+              startIcon={<EditIcon />}
+            >
+              EDIT
+            </Button>
           </Link>
         </CardActions>
       </Card>
@@ -239,6 +290,3 @@ export default function Profile() {
     </Grid>
   );
 }
-
-
-

@@ -1,4 +1,3 @@
-
 import api from './serviceConfig'
 
 async function getAllRecipes() {
@@ -46,14 +45,8 @@ async function getAllRecipesByName(name) {
     return result.data
 }
 
-async function updateRecipe(id, name, img, description, instruction) {
-    const result = await api.put(`/recipe/${id}`, {
-        
-        name:name,
-        img: img,
-        description: description,
-        instruction:instruction  
-    },
+async function deleteRecipe(id) {
+    const result = await api.delete(`recipe/${id}`,
         {
             headers: {
                 token: localStorage.getItem('token')
@@ -67,5 +60,5 @@ export {
     getRecipe,
     getRecipeByIngredient,
     getAllRecipesByName,
-    updateRecipe
+    deleteRecipe
 }
