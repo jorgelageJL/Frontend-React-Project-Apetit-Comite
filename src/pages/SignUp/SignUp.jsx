@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Directions, Email, FoodBank, Lock, Phone, TextFields, Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+  Directions,
+  Email,
+  FoodBank,
+  Lock,
+  Phone,
+  TextFields,
+  Visibility,
+  VisibilityOff,
+} from "@mui/icons-material";
 import {
   Button,
   Card,
@@ -11,10 +20,9 @@ import {
   IconButton,
   TextField,
 } from "@mui/material";
-import { blue, yellow } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../../Services/auth";
-import './SignUp.css'
+import "./SignUp.css";
 import LoginHeader from "../../components/LoginHeader/LoginHeader";
 import Footer from "../../components/Footer/Footer";
 
@@ -27,7 +35,7 @@ export default function SignUp() {
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [category, setCategory] = useState("");
-  const [role/*, setRole*/] = useState("user");
+  const [role /*, setRole*/] = useState("user");
   const navigate = useNavigate();
 
   function handleClick() {
@@ -36,21 +44,48 @@ export default function SignUp() {
 
   async function goToRegister() {
     try {
-      if (username && fullname && email && password && address && phone && category) {
-        const loginResponse = await signUp({ username, fullname, email, password, address, phone, category, role })
-        localStorage.setItem('token', loginResponse.data.token)
-        navigate('/home')
+      if (
+        username &&
+        fullname &&
+        email &&
+        password &&
+        address &&
+        phone &&
+        category
+      ) {
+        const loginResponse = await signUp({
+          username,
+          fullname,
+          email,
+          password,
+          address,
+          phone,
+          category,
+          role,
+        });
+        localStorage.setItem("token", loginResponse.data.token);
+        navigate("/home");
       } else {
-        throw new Error()
+        throw new Error();
       }
     } catch (error) {
-      alert('Any field is invalid')
+      alert("Any field is invalid");
     }
   }
 
   function render() {
     return (
-      <Card sx={{ width: "90%", backgroundColor: "#FFFFE0", border:"solid", borderRadius:"10px", maxWidth:"70vw", top:"20px"}} raised={true}>
+      <Card
+        sx={{
+          width: "90%",
+          backgroundColor: "#FFFFE0",
+          border: "solid",
+          borderRadius: "10px",
+          maxWidth: "70vw",
+          top: "20px",
+        }}
+        raised={true}
+      >
         <CardHeader title="SignUp"></CardHeader>
 
         <CardContent>
@@ -111,6 +146,7 @@ export default function SignUp() {
             variant="outlined"
             fullWidth={true}
             margin="dense"
+            placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter") goToRegister();
@@ -218,7 +254,7 @@ export default function SignUp() {
       >
         {render()}
       </Grid>
-      <Footer/>
+      <Footer />
     </>
   );
 }

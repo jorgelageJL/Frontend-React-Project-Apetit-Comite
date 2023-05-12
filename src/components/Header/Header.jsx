@@ -1,25 +1,24 @@
-import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import HeaderLogo from "../../assets/HEADER_LOGO.svg"
+import React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import HeaderLogo from "../../assets/HEADER_LOGO.svg";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useNavigate } from 'react-router-dom';
-import "./Header.css"
-
+import { useNavigate } from "react-router-dom";
+import "./Header.css";
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -38,44 +37,50 @@ function Header() {
 
   const pages = [
     {
-      title: 'HOME',
+      title: "HOME",
       fun: () => {
-        navigate('/home')
-      }
+        navigate("/home");
+      },
     },
     {
-      title: 'ALL RECIPES',
+      title: "ALL RECIPES",
       fun: () => {
-        navigate('/home/recipes')
-      }
+        navigate("/home/recipes");
+      },
     },
     {
-      title: 'MEAL PLANNER',
+      title: "MEAL PLANNER",
       fun: () => {
-        navigate('/home/menuplanner')
-      }
+        navigate("/home/menuplanner");
+      },
     },
     {
-      title: 'BY DIET',
+      title: "BY DIET",
       fun: () => {
-        navigate('/home/search')
-      }
-    }
+        navigate("/home/search");
+      },
+    },
+    {
+      title: "ADD NEW RECIPE",
+      fun: async () => {
+        navigate("/home/recipes/admin");
+      },
+    },
   ];
 
   const settings = [
     {
-      title: 'PROFILE',
+      title: "PROFILE",
       fun: () => {
-        navigate('/home/me')
-      }
+        navigate("/home/me");
+      },
     },
     {
-      title: 'LOGOUT',
+      title: "LOGOUT",
       fun: () => {
-        localStorage.removeItem('token')
-        navigate('/login')
-      }
+        localStorage.removeItem("token");
+        navigate("/login");
+      },
     },
   ];
 
@@ -189,7 +194,7 @@ function Header() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={setting.fun}>
-                  <Typography textAlign="center" >{setting.title}</Typography>
+                  <Typography textAlign="center">{setting.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>

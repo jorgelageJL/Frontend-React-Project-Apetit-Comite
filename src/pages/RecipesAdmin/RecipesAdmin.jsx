@@ -3,16 +3,15 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions, Grid } from "@mui/material";
+import { Button, CardActionArea, CardActions, Grid, Tooltip } from "@mui/material";
 import { getAllRecipes } from "../../Services/recipeServices";
-import { Link, Link as RouterLink, redirect } from "react-router-dom";
-// import AddRecipeMenuPlanner from '../AddRecipeMenuPlanner/AddRecipeMenuPlanner';
+import { Link, Link as RouterLink, useNavigate } from "react-router-dom";
 import AddMenuPlannerButton from "../../components/AddMenuPlannerButton/AddMenuPlannerButton";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { BorderColor } from "@mui/icons-material";
 
 function RecipesAdmin() {
   const [recipes, setRecipes] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getRecipes();
@@ -24,7 +23,7 @@ function RecipesAdmin() {
   }
 
   function displayRecipes() {
-    return recipes.map((r,idx) => {
+    return recipes.map((r, idx) => {
       return (
         <Grid item xs={12} sm={6} md={4} xl={3}>
           <Card
@@ -36,8 +35,10 @@ function RecipesAdmin() {
               flexDirection: "row",
             }}
           >
-            <CardActionArea component={RouterLink} to={`${r.id}`}>
-              <CardMedia component="img" height="140" image={r.img} />
+            <CardActionArea component={RouterLink} to={`/home/recipes/${r.id}`}>
+              <Tooltip title="More details">
+                <CardMedia component="img" height="140" image={r.img} />
+              </Tooltip>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {r.name}
@@ -58,11 +59,12 @@ function RecipesAdmin() {
 
   return (
     <>
-      <Link to= "/home/recipes/admin/add">
-      <Button sx={{right:"10px", position: "absolute", border:"solid", borderColor:"black",}}>
-        <AddCircleOutlineIcon/>
-      </Button>
-      </Link>
+      <Tooltip title="Insert Recipe">
+        <Button onClick={() => navigate("/home/recipes/admin/add")}
+          sx={{ right: "10px", position: "absolute", border: "solid", borderColor: "black", }}>
+          <AddCircleOutlineIcon />
+        </Button>
+      </Tooltip>
       <div style={{ width: "100%", height: "auto" }}>
         <Grid container sx={{ justifyContent: "start", flexWrap: "wrap" }}>
           {displayRecipes()}

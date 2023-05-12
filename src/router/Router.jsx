@@ -11,9 +11,9 @@ import Search from "../pages/Search/Search";
 import Recipe from "../pages/Recipe/Recipe";
 import AddRecipeMenuPlanner from "../pages/AddRecipeMenuPlanner/AddRecipeMenuPlanner";
 import Profile from "../pages/Profile/Profile";
-// import LoginHeader from "../components/LoginHeader/LoginHeader";
 import RecipesAdmin from "../pages/RecipesAdmin/RecipesAdmin";
 import AddRecipeAdmin from "../pages/AddRecipeAdmin/AddRecipeAdmin";
+<Navigate to="/init" replace={true} />;
 
 const router = createBrowserRouter([
   {
@@ -34,6 +34,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
+    // errorElement: <PageNotFound />,
     element: <Root />,
     loader: () => {
       if (!localStorage.getItem("token")) {
@@ -76,30 +77,22 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path:"/home/recipes/admin",
+        path: "/home/recipes/admin",
         element: <RecipesAdmin />,
         loader: async () => {
-          const result = await getProfile()
-          console.log(result)
-            if (result.role !== "admin") {
-              return redirect("/home")
-            } else {
-              return null;
+          const result = await getProfile();
+          if (result.role !== "admin") {
+            alert("Access denied");
+            return redirect(window.location.pathname.includes("/home/recipes/admin")// ARREGLAR INCLUDE, PERMITE ACCEDER A LOS CHILDREN
+              ? "/home" : window.location.pathname);
+          } else {
+            return null;
           }
         },
       },
       {
-        path:"/home/recipes/admin/add",
+        path: "/home/recipes/admin/add",
         element: <AddRecipeAdmin />,
-        loader: async () => {
-          const result = await getProfile()
-          console.log(result)
-            if (result.role !== "admin") {
-              return redirect("/home")
-            } else {
-              return null;
-          }
-        },
       },
     ],
   },
